@@ -10,6 +10,12 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="page-content">
+      <% if current_user %>
+        <%= render "menu" %>
+      <% end %>
+
+      <%= yield %>
+    </div>
   </body>
 </html>
