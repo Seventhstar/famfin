@@ -1,0 +1,39 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+#expense_stat{ display: grid; grid-template-columns: 200px 200px 1fr; column-gap: 20px; }
+
+.ttable thead {
+    border-radius: 0 3px 3px 0;
+}
+.ttable th, .ttable .total {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    font-weight: 700;
+}
+
+.td_edit_delete { width: 50px; }
+.icon,li.icon a {display: inline-block; vertical-align:middle; position:relative; width: 16px; height: 16px;}
+.icon+.icon {margin-left: 2px;}
+.icon_remove {background: url('delete.png');}
+.icon_remove.disabled { }
+.icon_edit {background: url('edit.png');}
+.icon_code {background: url('code.png');}
+.icon_tag {background: url('tag.png');}
+
+.table_row {height: 50px;}
+.table_cell {width: 48%; float: left;}
+.table_cell_last {width: 48%; float: right;}

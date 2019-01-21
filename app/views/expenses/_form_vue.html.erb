@@ -1,0 +1,14 @@
+<script>
+  Vue.component('v-select', VueSelect.VueSelect)
+
+  let app = new Vue({
+    el: '.expense',
+    data: <%= fill_vue_data(@expense, {
+      model: 'expense',
+      lists: 'shops accounts expense_types users',
+      list_values: 'shop account expense_type user'
+    })%>
+  })
+
+
+</script>

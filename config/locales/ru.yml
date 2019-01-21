@@ -1,0 +1,11 @@
+# Files in the config/locales directory are used for internationalization
+ru:
+  shop_id: "Магазин"
+
+  helpers:
+    select:
+      prompt: 'Выберите: '
+    submit:
+      create: Записать
+      submit: Сохранить 
+      update: Сохранить 

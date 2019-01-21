@@ -1,0 +1,52 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Расходы </h1>
+
+<table class="ttable">
+  <thead>
+    <tr>
+      <th>Дата</th>
+      <th>Магазин</th>
+      <th>Сумма</th>
+      <th>Отчет</th>
+      <th>Счет</th>
+      <th>Категория</th>
+      <th>Кто</th>
+      <th>Комментарий</th>
+      <th class="td_edit_delete"> </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% total = 0 %>
+    <% r_total = 0 %>
+    <% @expenses.each do |expense| %>
+      <% total = total + expense.amount %>
+      <% sum = expense.report_amount==0 ? expense.amount : expense.report_amount %>
+      <% r_total = r_total + sum %>
+      <tr>
+        <td><%= expense.date.try('strftime',"%d.%m.%Y")  %></td>
+        <td><%= expense.shop_name %></td>
+        <td class="td_right"><%= expense.amount.to_sum %></td>
+        <td class="td_right"><%= sum.to_sum %></td>
+        <td><%= expense.account_name %></td>
+        <td><%= expense.expense_type_name %></td>
+        <td><%= expense.user_name %></td>
+        <td><%= expense.comment %></td>
+        <%= tool_icons(expense) %>
+      </tr>
+    <% end %>
+
+    <tr class='total'>
+        <td>Итого:</td>
+        <td></td>
+        <td class="td_right"><%= total.to_sum %></td>
+        <td class="td_right"><%= r_total.to_sum %></td>
+        <td colspan="5"></td>
+      </tr>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Добавить расход', new_expense_path, class: 'btn btn_a' %>
