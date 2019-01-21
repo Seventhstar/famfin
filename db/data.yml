@@ -1,3 +1,34 @@
+---
+users:
+  columns:
+  - id
+  - email
+  - encrypted_password
+  - reset_password_token
+  - reset_password_sent_at
+  - remember_created_at
+  - created_at
+  - updated_at
+  - username
+  records: 
+  - - 1
+    - seventhstar@mail.ru
+    - "$2a$11$nyNqImhXPKTLDHk2FUPPc.jsGnR3Y5sb3RhV1x1Yx3TQwW3ufM/iG"
+    - 
+    - 
+    - 
+    - '2019-01-13 12:06:32.558086'
+    - '2019-01-13 12:11:49.196601'
+    - Женя
+  - - 2
+    - 89818122169@ya.ru
+    - "$2a$11$2FwRvQL/U3ZHBGbwFpXCwuT6i870GK1MZ.MDKb4KSkX79Y2MaVY.a"
+    - 
+    - 
+    - 
+    - '2019-01-14 07:16:35.300913'
+    - '2019-01-14 07:20:58.746657'
+    - Кира
 
 ---
 account_types:
@@ -511,34 +542,3 @@ shops:
     - '2019-01-14 10:54:05.258757'
     - '2019-01-14 10:54:05.258757'
 
----
-users:
-  columns:
-  - id
-  - email
-  - encrypted_password
-  - reset_password_token
-  - reset_password_sent_at
-  - remember_created_at
-  - created_at
-  - updated_at
-  - username
-  records: 
-  - - 1
-    - seventhstar@mail.ru
-    - "$2a$11$nyNqImhXPKTLDHk2FUPPc.jsGnR3Y5sb3RhV1x1Yx3TQwW3ufM/iG"
-    - 
-    - 
-    - 
-    - '2019-01-13 12:06:32.558086'
-    - '2019-01-13 12:11:49.196601'
-    - Женя
-  - - 2
-    - 89818122169@ya.ru
-    - "$2a$11$2FwRvQL/U3ZHBGbwFpXCwuT6i870GK1MZ.MDKb4KSkX79Y2MaVY.a"
-    - 
-    - 
-    - 
-    - '2019-01-14 07:16:35.300913'
-    - '2019-01-14 07:20:58.746657'
-    - Кира
