@@ -61,4 +61,4 @@ gem 'pg'
 gem 'activeadmin'
 gem 'arctic_admin'
 gem 'jquery-rails'
-gem 'yaml_db'
+gem 'yaml_db', :path => "vendor/gems/yaml_db-0.7.0"
