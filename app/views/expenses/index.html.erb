@@ -22,13 +22,12 @@
     <% r_total = 0 %>
     <% @expenses.each do |expense| %>
       <% total = total + expense.amount %>
-      <% sum = expense.report_amount==0 ? expense.amount : expense.report_amount %>
-      <% r_total = r_total + sum %>
+      <% r_total = r_total + expense.report_sum() %>
       <tr>
         <td><%= expense.date.try('strftime',"%d.%m.%Y")  %></td>
         <td><%= expense.shop_name %></td>
         <td class="td_right"><%= expense.amount.to_sum %></td>
-        <td class="td_right"><%= sum.to_sum %></td>
+        <td class="td_right"><%= expense.report_sum().to_sum %></td>
         <td><%= expense.account_name %></td>
         <td><%= expense.expense_type_name %></td>
         <td><%= expense.user_name %></td>

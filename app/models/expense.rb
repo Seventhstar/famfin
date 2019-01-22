@@ -20,4 +20,8 @@ class Expense < ApplicationRecord
     user.try(:name)
   end
 
+  def report_sum()
+    report_amount==0 || report_amount.nil? ? amount : report_amount
+  end
+
 end
