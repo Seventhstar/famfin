@@ -1,18 +1,54 @@
 <div class="box_wrap box_wrap_1">
 
-  <div id="expense_stat">
-    <% total = 0 %>
-    <% @expenses.each do |row| %>
-      <% total = total + row[1] %>
-      <div><%= @groups[row[0]-1][1] %></div>
-      <div class="td_right"><%= row[1].to_sum %></div>
-      <div><%= row[2] %></div>
-    <% end %>    
+  <div class="small_table">
+    <div class="expense_stat">
+      <div class="header">
+        Итоги по категориям:
+      </div>
+      <div class="body">
+        <% total = 0 %>
+        <% @expenses.each do |row| %>
 
-    <div>Итого:</div>
-    <div class="td_right"><%= total.to_sum %></div>
-    <div></div>
+        <% total = total + row[1] %>
+        <div><%= @groups[row[0]-1][1] %></div>
+        <div class="td_right"><%= row[1].to_sum %></div>
+        
+        <div class="line"></div>
+        <% end %>    
+
+      </div>
+      <div class="total">
+        <div>Итого:</div>
+        <div class="td_right"><%= total.to_sum %></div>
+
+      </div>
+    </div>
   </div>
+
+  <br>
+  <div class="small_table">
+    <div class="expense_stat">
+       <div class="header">
+        Итоги по ответственным:
+      </div>
+      <div class="body">
+        <% total = 0 %>
+        <% @by_user.each do |row| %>
+        <% total = total + row[1] %>
+        <div><%= @users[row[0]-1][1] %></div>
+        <div class="td_right"><%= row[1].to_sum %></div>
+        <div><%= row[2] %></div>
+        <div class="line"></div>
+        <% end %>    
+      </div>
+      
+      <div class="total">
+        <div>Итого:</div>
+        <div class="td_right"><%= total.to_sum %></div>
+      </div>
+    </div>
+  </div>
+
 
 </div>
 

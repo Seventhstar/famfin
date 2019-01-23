@@ -14,7 +14,43 @@
  *= require_self
  */
 
-#expense_stat{ display: grid; grid-template-columns: 200px 200px 1fr; column-gap: 20px; }
+.small_table {width: 25%}
+
+.expense_stat{
+  border: 2px solid #f76707;
+  border-radius: 5px;
+  background-color: #fff4e6;  
+} 
+
+.expense_stat .body, .expense_stat .total{ 
+  /*display: grid; grid-template-columns: 200px 200px 1fr 1fr; */
+  display: grid;
+  grid-template-columns: 1fr 80px;
+  /*column-gap: 20px;*/
+  }
+
+.expense_stat>div:not(.line) {
+/*  border: 2px solid #ffa94d;
+  border-radius: 5px;
+  background-color: #ffd8a8;
+  padding: 1em;
+  color: #d9480f;*/
+}
+
+.expense_stat > div:first-of-type,
+.line + div {
+  /*grid-column: 2;*/
+}
+
+.line {
+  grid-column: 1 / -1;
+  height: 1px;
+  background: black;
+}
+
+.expense_stat .body div:not(.line){padding: 4px 8px;}
+.expense_stat .total div{padding: 4px 8px; font-weight: bold;}
+.expense_stat .header{padding: 4px 8px; color: #d9480f; background-color: #ffd8a8; font-weight: bold;}
 
 .ttable thead {
     border-radius: 0 3px 3px 0;
