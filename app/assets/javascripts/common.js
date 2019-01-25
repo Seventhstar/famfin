@@ -15,4 +15,25 @@ $(document).ready(function(){
         showMonthAfterYear: false
     };
     $.datepicker.setDefaults($.datepicker.regional['ru']);
+	
+
+	$(document).on('click', '.datepicker', function (event) {
+		var $txt = $(this),
+			val = $txt.val(),			
+			placeholder = $(this).attr('placeholder'); //if (val!='') 
+			
+		$(this).datepicker({
+			showOn: 'focus',
+			dateFormat: 'dd.mm.yy',
+			
+			onClose: function(sel,ev) {changeDTP(this,sel)},
+			beforeShow: function(){
+				var offsetTop = $('#ui-datepicker-div').offset().top;
+				//if (!val && val!='') {
+				//	$txt.val(placeholder);					
+				//}
+				//alert(offsetTop);
+			}
+		}).focus();
 	});
+});
