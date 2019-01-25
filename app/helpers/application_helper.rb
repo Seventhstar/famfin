@@ -85,6 +85,7 @@ module ApplicationHelper
     if data[:lists].present? # collection_name[:source_name][+field1,field2...]
       data[:lists].split(' ').each do |l|
         fields = nil
+        raw = false
         if l.index('+').present? 
           lf = l.split('+')
           fields = lf[1]
@@ -94,10 +95,20 @@ module ApplicationHelper
           collection = eval("@#{l}")
         else
           la = l.split(':')
+          if la[1].include?('raw')
+            raw = true
+            la[1].sub! 'raw', ''
+          end
           collection = eval("#{la[1]}")
           l = la[0]
         end
-        data[l] = select_src(collection, "name", false, fields) if collection.present?
+        if collection.present? 
+          if raw 
+            data[l] = collection 
+          else
+            data[l] = select_src(collection, "name", false, fields) 
+          end
+        end
         # puts "data[:lists]", data[:lists], collection, fields
       end
       data.delete(:lists)

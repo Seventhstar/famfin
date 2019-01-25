@@ -1,0 +1,49 @@
+<div class="receipt">
+<%= form_with(model: receipt, local: true) do |form| %>
+  <% if receipt.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(receipt.errors.count, "error") %> prohibited this receipt from being saved:</h2>
+
+      <ul>
+      <% receipt.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field table_row">
+    <div style="width: 150px; float: left; margin-right: 10px">
+      <label> Дата</label>
+      <%= form.text_field :date, value: receipt.date.try('strftime',"%d.%m.%Y"), label: false, class: "txt datepicker left" %>
+    </div>
+
+    <div class="left" style="width: 250px;  margin-right: 10px">
+      <label> Сумма</label>
+      <%= form.number_field :amount %>
+    </div>
+
+    <div class="table_cell_last">
+      <label>Категория</label>
+      <v-chosen name="receipts_type" placeholder="Категория..."/>
+    </div>
+  </div>
+
+
+  <div class="field">
+    <label> Счет</label>
+    <v-chosen name="account" placeholder="Счет..."/>
+  </div>
+
+  <div class="field">
+    <%= form.label :comment %>
+    <%= form.text_field :comment %>
+  </div>
+
+  <div class="actions">
+    <%= submit_cancel receipts_url, {disabled: "!f_valid"} %>
+  </div>
+<% end %>
+</div>
+
+<%= render 'form_vue' %>

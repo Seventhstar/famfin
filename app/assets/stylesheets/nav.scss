@@ -22,13 +22,20 @@ subnav { display: block; overflow:auto; }
 a { color: #428bca;  text-decoration: none;}
 
 .navbar { position: relative; min-height: 51px; margin-bottom: 20px; border: 1px solid #e7e7e7; border-radius: 4px; background-color: #f8f8f8; }
-.navbar-nav { float: left; margin: 0; width: 92%;}
+.navbar-nav { float: left; margin: 0; width: 100%;}
 .navbar-nav>li { float: left;}
 // .navbar .navbar-nav>li>a { padding-top: 10px; padding-bottom: 10px; line-height: 20px;}
 .navbar-nav>li.logout>a { padding-top: 13px; padding-bottom: 13px;}
-#logout a {padding-top: 13px; padding-bottom: 13px;}
-#options a  {padding-top: 13px; padding-bottom: 13px; }
-#options a:hover img  { background-image: asset-url("gear_wh.png") }
+#logout a {padding-top: 10px; padding-bottom: 12px;}
+// #options a  {padding-top: 13px; padding-bottom: 13px; }
+// #options a:hover img  { background-image: asset-url("gear_wh.png") }
 .navbar-nav>li>a { padding-top: 15px; padding-bottom: 15px; }
 
 .li-right{ float: right !important; }
+.li-right a span {padding: 8px 16px; margin: 0;}
+
+#charts1 span{ background: asset-url('tools.png') no-repeat 0 0; background-position: -32px 0;}
+#charts1:hover span, #charts1 .active span{ background-position: -32px -32px;}
+
+#options span{ background: asset-url('tools.png') no-repeat 0 0; background-position: 0 0;}
+#options:hover span, #options .active span{ background-position: 0 -32px;}

@@ -1,10 +1,21 @@
 class ExpensesController < InheritedResources::Base
   before_action :set_expense, only: [:show, :edit, :update, :destroy]
-  before_action :fill_values, only: [:edit, :new]
+  before_action :fill_values, only: [:edit, :new, :index]
   before_action :authenticate_user!
 
   def index
     @expenses = Expense.order(date: :desc).joins(:shop)
+    @json_expenses = @expenses.map{|e| {
+      id: e.id, 
+      date: e.date.try('strftime',"%d.%m.%Y"),
+      shop: e.shop_name,
+      amount: e.amount,
+      account: e.account_name,
+      expense_type: e.expense_type_name,
+      user: e.user_name,
+      comment: e.comment
+    }}
+
   end
 
   def new

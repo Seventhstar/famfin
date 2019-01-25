@@ -59,8 +59,10 @@ SimpleNavigation::Configuration.run do |navigation|
     #
 
     primary.item :expenses, 'Расходы', '/expenses'
+    primary.item :expenses, 'Поступления', '/receipts'
     primary.item :statistic, 'Статистика', '/statistics'
     primary.item :logout, image_tag('logout.png'), destroy_user_session_path, method: :delete, html: {class: " logout li-right"}
+    primary.item :options,  content_tag(:span,' '), '/admin', html: {class: 'li-right options', title: 'Настройки'}
 
     primary.dom_class = 'nav navbar-nav'
     # you can also specify html attributes to attach to this particular level

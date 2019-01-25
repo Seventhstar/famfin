@@ -1,0 +1,14 @@
+<script>
+  Vue.component('v-select', VueSelect.VueSelect)
+
+  let app = new Vue({
+    el: '.receipt',
+    data: <%= fill_vue_data(@receipt, {
+      model: 'receipt',
+      lists: 'shops accounts receipts_types users',
+      list_values: 'shop account receipts_type user'
+    })%>
+  })
+
+
+</script>

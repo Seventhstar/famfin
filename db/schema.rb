@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_16_090959) do
+ActiveRecord::Schema.define(version: 2019_01_24_193809) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,24 @@ ActiveRecord::Schema.define(version: 2019_01_16_090959) do
     t.index ["user_id"], name: "index_expenses_on_user_id"
   end
 
+  create_table "receipts", force: :cascade do |t|
+    t.date "date"
+    t.integer "amount"
+    t.bigint "account_id"
+    t.bigint "receipts_type_id"
+    t.string "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_receipts_on_account_id"
+    t.index ["receipts_type_id"], name: "index_receipts_on_receipts_type_id"
+  end
+
+  create_table "receipts_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "shops", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -106,4 +124,6 @@ ActiveRecord::Schema.define(version: 2019_01_16_090959) do
   add_foreign_key "expenses", "expense_types"
   add_foreign_key "expenses", "shops"
   add_foreign_key "expenses", "users"
+  add_foreign_key "receipts", "accounts"
+  add_foreign_key "receipts", "receipts_types"
 end

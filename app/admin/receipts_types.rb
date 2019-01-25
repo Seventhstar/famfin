@@ -1,9 +1,9 @@
-ActiveAdmin.register Bank do
+ActiveAdmin.register ReceiptsType do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-  menu label: "Банки"
-  permit_params :name, :bik
+  menu label: "Виды поступлений"
+  permit_params :name
 #
 # or
 #

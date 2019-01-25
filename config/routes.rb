@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   resources :expenses
+  resources :receipts
 
   get "/statistics/" => "statistics#show"
   get "/statistics/:page" => "statistics#show"

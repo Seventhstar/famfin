@@ -58,7 +58,7 @@ Vue.component('v-chosen', {
         onUpdate: function(val) {
           this.localValue = (val === null) ? 0 : val.value;
           this.$parent[this.name] = val
-          this.$root.$emit('onInput', {value: this.localValue, key: this.k, index: this.index});
+          this.$root.$emit('onInput', {value: this.localValue, key: this.k, index: this.index, name: this.name, label: val.label});
         }
       }
   })

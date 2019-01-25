@@ -13,6 +13,19 @@
 //= require jquery
 //= require rails-ujs
 //= require activestorage
-//= require jquery.timepicker
 //= require vue
+//= require common
 //= require_tree .
+
+function to_sum(d){ 
+  if (isNaN(d)) return 0;
+  s = d.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1 ");
+  return s;
+}
+
+$(function() {
+  $(document).on('focus', '.datepicker', function () {$(".datepicker").inputmask('99.99.9999'); });
+// $('.datepicker').datepicker({
+//         format: 'dd/mm/yyyy'
+//     });
+});
