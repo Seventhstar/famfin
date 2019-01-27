@@ -26,6 +26,6 @@ function to_sum(d){
 $(function() {
   // $(document).on('focus', '.datepicker', function () {$(".datepicker").inputmask('99.99.9999'); });
 $('.datepicker').datepicker({
-         format: 'dd/mm/yyyy'
+         format: 'dd.mm.yyyy'
      });
 });

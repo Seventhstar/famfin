@@ -76,8 +76,8 @@ module ApplicationHelper
 
     if data[:list_values].present? 
       data[:list_values].split(' ').each do |li| 
-        # data[li] = v_value(nil, nil, nil, eval("@#{li}"))
-        data[li] = v_value(obj, li) if data[li].nil?
+        data[li] = v_value(nil, nil, nil, eval("@#{li}"))
+        data[li] = v_value(obj, li) if !data[li].present?
       end
       data.delete(:list_values)
     end

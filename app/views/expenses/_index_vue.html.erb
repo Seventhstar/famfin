@@ -5,9 +5,9 @@
     el: '.expenses',
     data: <%= fill_vue_data(nil, { 
       sortKey: 'date',
-      reverse: false,
-      query: '',
-      query_field: '',
+      reverse: true,
+      filter: [],
+
       filteredData: [],
       list_values: 'shop account expense_type',
       lists: 'shops accounts expense_types users expenses:raw@json_expenses',
@@ -38,13 +38,18 @@
 
     computedList: function () {
       var vm = this
+      let s = this.reverse ? 1 : -1
+      let ns = this.reverse ? -1 : 1
       this.filteredData = this.expenses.sort((a,b) => 
-        (a[this.sortKey] > b[this.sortKey]) ? 1 : ((b[this.sortKey] > a[this.sortKey]) ? -1 : 0));
+        (a[this.sortKey] > b[this.sortKey]) ? ns : ((b[this.sortKey] > a[this.sortKey]) ? s : 0));
 
-      if (this.query_field !== '' && this.query !== undefined){
+      if (this.filter.length >0){
         this.filteredData = this.filteredData.filter(function (item) {
-          // console.log('item', item, vm.query_field)
-          return item[vm.query_field].toLowerCase().indexOf(vm.query.toLowerCase()) !== -1
+          for (q in vm.filter) {
+            let f = vm.filter[q]
+            if (item[f.field].toLowerCase().indexOf(f.value.toLowerCase()) === -1) return false
+          }
+          return true
         })
       }else{
         return this.filteredData;
@@ -56,9 +61,19 @@
   methods:{
     onInput(e){
       if (e !== undefined){
-        // console.log('e', e);
-        this.query_field = e.name;
-        this.query = e.label;
+        let s = -1;
+        for (var i=0; i < this.filter.length; i++) {
+          if (this.filter[i].field === e.name) {s = i; }
+        }
+
+        if (s > -1){
+          if (e.label === undefined)
+            this.filter.splice(s,1)
+          else
+            this.filter[s].value = e.label
+        } 
+        else if (e.label !== undefined)
+          this.filter.push({field: e.name, value: e.label});
       }
     },
 
@@ -69,7 +84,8 @@
 
     shuffle: function () {
       this.sortBy("date")
-      this.query_field = '';
+      this.reverse = true;
+      this.filter = [];
     },
 
     editLink(id){
