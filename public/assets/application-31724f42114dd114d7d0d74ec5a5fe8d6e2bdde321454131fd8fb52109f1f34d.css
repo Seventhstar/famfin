@@ -7279,25 +7279,41 @@ a.ui-button:active,
  */
 /* line 19, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
 .small_table {
-  width: 25%;
+  width: 33%;
 }
 
-/* line 21, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
+/* line 20, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
+.red {
+  color: red !important;
+}
+
+/* line 22, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
 .expense_stat {
   border: 2px solid #f76707;
   border-radius: 5px;
-  background-color: #fff4e6;
+  background-color: #fff;
 }
 
-/* line 27, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
-.expense_stat .body, .expense_stat .total {
+/* line 28, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
+.total, .total_2, .row_2 {
+  background-color: #ffd8a8;
+}
+
+/* line 30, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
+.expense_stat .row, .expense_stat .total {
   /*display: grid; grid-template-columns: 200px 200px 1fr 1fr; */
   display: grid;
-  grid-template-columns: 1fr 80px;
+  grid-template-columns: 1fr 80px 80px 80px;
   /*column-gap: 20px;*/
 }
 
-/* line 34, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
+/* line 36, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
+.total_2, .expense_stat .row_2 {
+  display: grid;
+  grid-template-columns: 1fr 80px;
+}
+
+/* line 41, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
 .expense_stat > div:not(.line) {
   /*  border: 2px solid #ffa94d;
     border-radius: 5px;
@@ -7306,56 +7322,69 @@ a.ui-button:active,
     color: #d9480f;*/
 }
 
-/* line 42, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
+/* line 49, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
 .expense_stat > div:first-of-type,
 .line + div {
   /*grid-column: 2;*/
 }
 
-/* line 47, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
+/* line 54, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
 .line {
   grid-column: 1 / -1;
   height: 1px;
-  background: black;
-}
-
-/* line 53, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
-.expense_stat .body div:not(.line) {
-  padding: 4px 8px;
-}
-
-/* line 54, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
-.expense_stat .total div {
-  padding: 4px 8px;
-  font-weight: bold;
+  background: gray;
 }
 
 /* line 55, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
-.expense_stat .header {
-  padding: 4px 8px;
-  color: #d9480f;
-  background-color: #ffd8a8;
-  font-weight: bold;
+.header .line {
+  grid-column: 1 / -1;
+  height: 1px;
+  background: #d9480f;
 }
 
 /* line 57, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
+.expense_stat .row div:not(.line), .expense_stat .row_2 div:not(.line) {
+  padding: 4px 8px;
+}
+
+/* line 58, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
+.expense_stat .total div, .expense_stat .total_2 div {
+  padding: 4px 8px;
+  font-weight: bold;
+}
+
+/* line 59, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
+.expense_stat .header {
+  color: #d9480f;
+  background-color: #ffd8a8;
+  text-align: center;
+}
+
+/* line 60, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
+.expense_stat .header .title {
+  padding: 4px 8px;
+  font-weight: bold;
+  border-bottom: 1px #d9480f solid;
+}
+
+/* line 62, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
 .ttable thead {
   border-radius: 0 3px 3px 0;
 }
 
-/* line 60, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
+/* line 65, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
 .ttable th, .ttable .total {
   padding: 8px;
   border-bottom: 1px solid #ddd;
   font-weight: 700;
 }
 
-/* line 66, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
+/* line 71, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
 .td_edit_delete {
   width: 50px;
 }
 
-/* line 67, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
+/* line 72, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
 .icon, li.icon a {
   display: inline-block;
   vertical-align: middle;
@@ -7364,43 +7393,43 @@ a.ui-button:active,
   height: 16px;
 }
 
-/* line 68, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
+/* line 73, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
 .icon + .icon {
   margin-left: 2px;
 }
 
-/* line 69, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
+/* line 74, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
 .icon_remove {
   background: url(/assets/delete-7cc92076910a4af6f2d9ee4747b2e911e02eebde1137ea9680657b4eafa8fb8e.png);
 }
 
-/* line 71, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
+/* line 76, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
 .icon_edit {
   background: url(/assets/edit-a64f492c0b71e48cf020910dfcd88d78eaa6043ea321daf996dec8717c3473f7.png);
 }
 
-/* line 72, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
+/* line 77, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
 .icon_code {
   background: url("code.png");
 }
 
-/* line 73, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
+/* line 78, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
 .icon_tag {
   background: url("tag.png");
 }
 
-/* line 75, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
+/* line 80, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
 .table_row {
   height: 50px;
 }
 
-/* line 76, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
+/* line 81, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
 .table_cell {
   width: 48%;
   float: left;
 }
 
-/* line 77, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
+/* line 82, H:/www/railsprj/familyfin/app/assets/stylesheets/application.scss */
 .table_cell_last {
   width: 48%;
   float: right;

@@ -48895,6 +48895,10 @@ return $.datepicker;
 
 
 }).call(this);
+(function() {
+
+
+}).call(this);
 /*!
 * jquery.inputmask.bundle.js
 * https://github.com/RobinHerbots/Inputmask
@@ -53260,8 +53264,9 @@ Vue.component('v-chosen', {
     methods: {
         onUpdate: function(val) {
           this.localValue = (val === null) ? 0 : val.value;
+          let label = (val === null) ? undefined : val.label;
           this.$parent[this.name] = val
-          this.$root.$emit('onInput', {value: this.localValue, key: this.k, index: this.index, name: this.name, label: val.label});
+          this.$root.$emit('onInput', {value: this.localValue, key: this.k, index: this.index, name: this.name, label: label});
         }
       }
   })
@@ -53431,6 +53436,6 @@ function to_sum(d){
 $(function() {
   // $(document).on('focus', '.datepicker', function () {$(".datepicker").inputmask('99.99.9999'); });
 $('.datepicker').datepicker({
-         format: 'dd/mm/yyyy'
+         format: 'dd.mm.yyyy'
      });
 });
