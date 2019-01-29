@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @expense_plan.date %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @expense_plan.amount %>
+</p>
+
+<p>
+  <strong>Expense type:</strong>
+  <%= @expense_plan.expense_type %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @expense_plan.comment %>
+</p>
+
+<%= link_to 'Edit', edit_expense_plan_path(@expense_plan) %> |
+<%= link_to 'Back', expense_plans_path %>

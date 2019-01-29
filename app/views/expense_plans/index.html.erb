@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<div class="head">  
+  Плановые расходы 
+<%= link_to 'Добавить план', new_expense_plan_path, class: 'btn btn_a right' %>
+</div>
+
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Месяц</th>
+      <th>Сумма</th>
+      <th>Категория</th>
+      <th>Комментарий</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @expense_plans.each do |expense_plan| %>
+      <tr>
+        <td><%= expense_plan.date %></td>
+        <td><%= expense_plan.amount %></td>
+        <td><%= expense_plan.expense_type_name %></td>
+        <td><%= expense_plan.comment %></td>
+        <td><%= link_to 'Show', expense_plan %></td>
+        <td><%= link_to 'Edit', edit_expense_plan_path(expense_plan) %></td>
+        <td><%= link_to 'Destroy', expense_plan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Новый план', new_expense_plan_path %>

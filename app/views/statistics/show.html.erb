@@ -2,25 +2,46 @@
 
   <div class="small_table">
     <div class="expense_stat">
-      <div class="header">
-        Итоги по категориям:
+      <div class="header"> 
+        <div class="title">Итоги по категориям</div>
+        <div class="row">
+          <div>Категория</div>
+          <div>Факт</div>
+          <div>План</div>
+          <div>Разница</div>
+          <div class="line"></div>
+        </div>
       </div>
-      <div class="body">
-        <% total = 0 %>
-        <% @expenses.each do |row| %>
 
-        <% total = total + row[1] %>
-        <div><%= @groups[row[0]-1][1] %></div>
-        <div class="td_right"><%= row[1].to_sum %></div>
+      <div class="row">
+        <% total = 0 %>
+        <% @expenses_talbe.each do |row| %>
+
         
+        <div><%= row[:type] %></div>
+        <div class="td_right"><%= row[:amount] %></div>
+        <div class="td_right"><%= row[:plan] %></div>
+        <div class="td_right <%= 'red' if row[:diff].include?('-') %> "><%= row[:diff] %></div>
+
         <div class="line"></div>
         <% end %>    
 
       </div>
       <div class="total">
-        <div>Итого:</div>
-        <div class="td_right"><%= total.to_sum %></div>
-
+        <div>Итого расходы:</div>
+        <div class="td_right"><%= @total_amount.to_sum %></div>
+      </div>
+      <div class="row_2">
+        <div>Экономия:</div>
+        <div class="td_right"><%= @rest.to_sum %></div>
+      </div>
+      <div class="row_2">
+        <div>Перерасход:</div>
+        <div class="td_right"><%= @over.to_sum %></div>
+      </div>
+      <div class="total_2">
+        <div>Общее отклонение:</div>
+        <div class="td_right <%= 'red' if @total_diff<0 %>"><%= @total_diff.to_sum %></div>
       </div>
     </div>
   </div>
@@ -28,26 +49,26 @@
   <br>
   <div class="small_table">
     <div class="expense_stat">
-       <div class="header">
-        Итоги по ответственным:
-      </div>
-      <div class="body">
-        <% total = 0 %>
-        <% @by_user.each do |row| %>
-        <% total = total + row[1] %>
-        <div><%= @users[row[0]-1][1] %></div>
-        <div class="td_right"><%= row[1].to_sum %></div>
-        <div><%= row[2] %></div>
-        <div class="line"></div>
-        <% end %>    
-      </div>
-      
-      <div class="total">
-        <div>Итого:</div>
-        <div class="td_right"><%= total.to_sum %></div>
-      </div>
+     <div class="header">
+        <div class="title">Итоги по ответственным</div>
+    </div>
+    <div class="row">
+      <% total = 0 %>
+      <% @by_user.each do |row| %>
+      <% total = total + row[1] %>
+      <div><%= @users[row[0]-1][1] %></div>
+      <div class="td_right"><%= row[1].to_sum %></div>
+      <div><%= row[2] %></div>
+      <div class="line"></div>
+      <% end %>    
+    </div>
+
+    <div class="total">
+      <div>Итого:</div>
+      <div class="td_right"><%= total.to_sum %></div>
     </div>
   </div>
+</div>
 
 
 </div>

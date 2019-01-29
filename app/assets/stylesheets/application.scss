@@ -15,20 +15,27 @@
  *= require_self
  */
 
-.small_table {width: 25%}
+.small_table {width: 33%}
+.red {color: red !important;}
 
 .expense_stat{
   border: 2px solid #f76707;
   border-radius: 5px;
-  background-color: #fff4e6;  
+  background-color: #fff;  
 } 
 
-.expense_stat .body, .expense_stat .total{ 
+.total, .total_2, .row_2 {background-color: #ffd8a8;}
+
+.expense_stat .row, .expense_stat .total{ 
   /*display: grid; grid-template-columns: 200px 200px 1fr 1fr; */
   display: grid;
-  grid-template-columns: 1fr 80px;
+  grid-template-columns: 1fr 80px 80px 80px;
   /*column-gap: 20px;*/
   }
+.total_2, .expense_stat .row_2 {
+  display: grid;
+  grid-template-columns: 1fr 80px;
+}
 
 .expense_stat>div:not(.line) {
 /*  border: 2px solid #ffa94d;
@@ -43,15 +50,13 @@
   /*grid-column: 2;*/
 }
 
-.line {
-  grid-column: 1 / -1;
-  height: 1px;
-  background: black;
-}
+.line {grid-column: 1 / -1; height: 1px; background: gray;}
+.header .line {grid-column: 1 / -1; height: 1px; background: #d9480f;}
 
-.expense_stat .body div:not(.line){padding: 4px 8px;}
-.expense_stat .total div{padding: 4px 8px; font-weight: bold;}
-.expense_stat .header{padding: 4px 8px; color: #d9480f; background-color: #ffd8a8; font-weight: bold;}
+.expense_stat .row div:not(.line), .expense_stat .row_2 div:not(.line){padding: 4px 8px;}
+.expense_stat .total div, .expense_stat .total_2 div{padding: 4px 8px; font-weight: bold;}
+.expense_stat .header{color: #d9480f; background-color: #ffd8a8; text-align: center; }
+.expense_stat .header .title {padding: 4px 8px;  font-weight: bold; border-bottom: 1px #d9480f solid;}
 
 .ttable thead {
     border-radius: 0 3px 3px 0;

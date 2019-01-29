@@ -59,6 +59,7 @@ SimpleNavigation::Configuration.run do |navigation|
     #
 
     primary.item :expenses, 'Расходы', '/expenses'
+    primary.item :expenses, 'План', '/expense_plans'
     primary.item :expenses, 'Поступления', '/receipts'
     primary.item :statistic, 'Статистика', '/statistics'
     primary.item :logout, image_tag('logout.png'), destroy_user_session_path, method: :delete, html: {class: " logout li-right"}

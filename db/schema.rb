@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_24_193809) do
+ActiveRecord::Schema.define(version: 2019_01_29_092246) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,16 @@ ActiveRecord::Schema.define(version: 2019_01_24_193809) do
     t.string "bik"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "expense_plans", force: :cascade do |t|
+    t.date "date"
+    t.integer "amount"
+    t.bigint "expense_type_id"
+    t.string "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["expense_type_id"], name: "index_expense_plans_on_expense_type_id"
   end
 
   create_table "expense_types", force: :cascade do |t|
@@ -120,6 +130,7 @@ ActiveRecord::Schema.define(version: 2019_01_24_193809) do
   add_foreign_key "accounts", "account_types"
   add_foreign_key "accounts", "banks"
   add_foreign_key "accounts", "users"
+  add_foreign_key "expense_plans", "expense_types"
   add_foreign_key "expenses", "accounts"
   add_foreign_key "expenses", "expense_types"
   add_foreign_key "expenses", "shops"

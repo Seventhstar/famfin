@@ -1,0 +1,45 @@
+<div class="expense_plan">
+<%= form_with(model: expense_plan, local: true) do |form| %>
+  <% if expense_plan.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(expense_plan.errors.count, "error") %> prohibited this expense_plan from being saved:</h2>
+
+      <ul>
+      <% expense_plan.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field table_row">
+    <div style="width: 150px; float: left; margin-right: 10px">
+    <%= form.label "Месяц" %>
+    <%= form.text_field :date, label: false, class: "txt datepicker left" %>
+    </div>
+
+    <div class="left" style="width: 250px;  margin-right: 10px">
+    <%= form.label "Сумма" %>
+    <%= form.number_field :amount %>
+    </div>
+  </div>
+
+  <div class="field table_row">
+    <div class="table_cell">
+      <label>Категория</label>
+      <v-chosen name="expense_type" placeholder="Категория..."/>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :comment %>
+    <%= form.text_field :comment %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+</div>
+
+<%= render 'form_vue' %>
