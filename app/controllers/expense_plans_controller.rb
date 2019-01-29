@@ -1,4 +1,5 @@
 class ExpensePlansController < InheritedResources::Base
+  before_action :set_expense_plan, only: [:show, :edit, :update, :destroy]
   before_action :fill_values, only: [:edit, :new, :index]
   before_action :authenticate_user!
 
@@ -31,6 +32,10 @@ class ExpensePlansController < InheritedResources::Base
 
 
   private
+
+    def set_expense_plan
+      @expense_plan = ExpensePlan.find(params[:id])
+    end
 
     def expense_plan_params
       params.require(:expense_plan).permit(:date, :amount, :expense_type_id, :comment)
