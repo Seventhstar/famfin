@@ -5783,7 +5783,7 @@ input[type="submit"] {
 
 /* line 49, H:/www/railsprj/familyfin/app/assets/stylesheets/expenses.scss */
 .expenses li {
-  border-bottom: 1px solid #e4eaec;
+  border-bottom: 1px solid #c4cacc;
 }
 
 /* line 50, H:/www/railsprj/familyfin/app/assets/stylesheets/expenses.scss */
@@ -5794,19 +5794,40 @@ input[type="submit"] {
 }
 
 /* line 55, H:/www/railsprj/familyfin/app/assets/stylesheets/expenses.scss */
-.grid_thead {
-  border-radius: 0 3px 3px 0;
-  border: 1px solid #e4eaec;
+.grid_title {
   background-color: #e4eaec;
+  border: 1px solid #e4eaec;
+  border-radius: 3px 3px 0 0;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px;
+}
+
+/* line 65, H:/www/railsprj/familyfin/app/assets/stylesheets/expenses.scss */
+.grid_thead {
+  background-color: #f5f5f5;
+  border-top: 1px solid #c4cacc;
+  border-bottom: 1px solid #ccc;
   font-weight: 700;
 }
 
-/* line 62, H:/www/railsprj/familyfin/app/assets/stylesheets/expenses.scss */
+/* line 72, H:/www/railsprj/familyfin/app/assets/stylesheets/expenses.scss */
+.grid_total {
+  background-color: #f5f5f5;
+  font-weight: 700;
+}
+
+/* line 78, H:/www/railsprj/familyfin/app/assets/stylesheets/expenses.scss */
+.grid_thead a, .grid_thead a:visited {
+  color: #777;
+}
+
+/* line 84, H:/www/railsprj/familyfin/app/assets/stylesheets/expenses.scss */
 .flip-list-move {
   transition: transform .5s;
 }
 
-/* line 66, H:/www/railsprj/familyfin/app/assets/stylesheets/expenses.scss */
+/* line 88, H:/www/railsprj/familyfin/app/assets/stylesheets/expenses.scss */
 .btn_a {
   display: inline-block;
   background: #ff8411;
@@ -5820,7 +5841,7 @@ input[type="submit"] {
   position: relative;
 }
 
-/* line 80, H:/www/railsprj/familyfin/app/assets/stylesheets/expenses.scss */
+/* line 102, H:/www/railsprj/familyfin/app/assets/stylesheets/expenses.scss */
 .btn_reset {
   background: #c3c3c3;
   margin-right: 10px;
@@ -6459,11 +6480,48 @@ td.disabled {
 }
 
 /* line 42, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus, .ui-button:hover, .ui-button:focus {
+  background: white;
+}
+
+/* line 46, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
+.ui-datepicker .ui-datepicker-calendar .ui-state-default,
+.ui-datepicker-calendar .ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+  background: white;
+  border: none;
+  text-align: center;
+}
+
+/* line 54, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
+#ui-datepicker-div .ui-datepicker-header > .ui-datepicker-prev, #ui-datepicker-div .ui-datepicker-header > .ui-datepicker-next {
+  background: white;
+}
+
+/* line 58, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
+#ui-datepicker-div .ui-widget-header {
+  background: white;
+}
+
+/* line 59, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
+#ui-datepicker-div .ui-datepicker .ui-datepicker-title {
+  margin: 0;
+  line-height: 1.3em;
+}
+
+/* line 64, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
+.ui-datepicker-calendar tbody tr,
+.ui-datepicker-calendar tbody tr:hover {
+  border: none;
+  background-color: white;
+}
+
+/* line 68, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
 .datepicker.slim_txt {
   background: url(/ico-date.png) 94% 4px no-repeat;
 }
 
-/* line 46, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
+/* line 72, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
 .ui-datepicker {
   background: url(/assets/bg0_1-be11822af0b377b87a434f1aad4f4848edbf672831d57afe63c714f13bdee7d6.png) repeat;
   padding: 26px 22px 20px 22px;
@@ -6475,7 +6533,7 @@ td.disabled {
   font-size: 14px;
 }
 
-/* line 47, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
+/* line 73, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
 .ui-datepicker:after {
   content: ' ';
   display: block;
@@ -6487,7 +6545,7 @@ td.disabled {
   top: 0;
 }
 
-/* line 48, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
+/* line 74, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
 .ui-datepicker .ui-datepicker-header {
   text-align: center;
   position: relative;
@@ -6495,12 +6553,7 @@ td.disabled {
   font-weight: 500 !important;
 }
 
-/* line 50, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
-.ui-datepicker-title {
-  padding: 3px 5px !important;
-}
-
-/* line 54, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
+/* line 80, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
 .ui-datepicker .ui-datepicker-prev,
 .ui-datepicker .ui-datepicker-next {
   font-size: 0;
@@ -6513,14 +6566,14 @@ td.disabled {
   padding: 3px 8px;
 }
 
-/* line 58, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
+/* line 84, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
 .ui-datepicker .ui-datepicker-prev.ui-state-hover,
 .ui-datepicker .ui-datepicker-next.ui-state-hover {
   background: #ff8411;
   border-radius: 5px;
 }
 
-/* line 61, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
+/* line 87, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
 .ui-datepicker .ui-datepicker-prev span,
 .ui-datepicker .ui-datepicker-next span {
   background: url(/assets/arr1-c9b64f9be7a851d2dd8292055445ef7bd9564da4feeafb84bd75fc302f277123.png) no-repeat;
@@ -6529,50 +6582,55 @@ td.disabled {
   display: block;
 }
 
-/* line 64, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
+/* line 90, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
 .ui-datepicker .ui-datepicker-prev {
   left: 7px;
 }
 
-/* line 65, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
+/* line 91, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
 .ui-datepicker .ui-datepicker-next {
   right: 7px;
 }
 
-/* line 67, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
+/* line 93, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
 .ui-datepicker .ui-datepicker-prev span {
   background-position: -32px 0;
 }
 
-/* line 68, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
+/* line 94, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
 .ui-datepicker .ui-datepicker-next span {
   background-position: -41px 0;
 }
 
-/* line 70, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
+/* line 96, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
 .ui-datepicker .ui-datepicker-calendar {
   border-collapse: collapse;
 }
 
-/* line 71, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
+/* line 97, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
 .ui-datepicker .ui-datepicker-calendar th {
   text-align: center;
   vertical-align: top;
-  padding: 0 0 5px 0;
+  padding: 5px;
   font-weight: 500;
 }
 
-/* line 72, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
+/* line 98, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
+.ui-datepicker-week-end {
+  color: red;
+}
+
+/* line 99, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
 .ui-datepicker .ui-datepicker-calendar td {
   text-align: center;
   vertical-align: top;
   padding: 0;
 }
 
-/* line 73, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
+/* line 100, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
 .ui-datepicker .ui-datepicker-calendar .ui-state-default {
   display: block;
-  width: 32px;
+  width: 28px;
   height: 29px;
   line-height: 29px;
   color: #000;
@@ -6581,7 +6639,7 @@ td.disabled {
   position: relative;
 }
 
-/* line 74, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
+/* line 101, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
 .ui-datepicker .ui-datepicker-calendar .ui-datepicker-today .ui-state-default {
   border: 1px solid #ff8411;
   width: 30px;
@@ -6589,31 +6647,31 @@ td.disabled {
   line-height: 27px;
 }
 
-/* line 76, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
+/* line 103, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
 .ui-datepicker .ui-datepicker-calendar .ui-datepicker-current-day .ui-state-default {
   background: #ff8411;
   border: 0;
   color: #fff;
 }
 
-/* line 77, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
+/* line 104, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
 .ui-datepicker .ui-datepicker-calendar .ui-state-default:hover {
   background: #ff8411;
   opacity: 0.8;
   color: white;
 }
 
-/* line 78, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
+/* line 105, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
 .ui-datepicker .ui-datepicker-calendar .ui-datepicker-other-month .ui-state-default {
   color: #7d7d7d;
 }
 
-/* line 81, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
+/* line 108, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
 .ui-datepicker.ui-position-top {
   margin-top: 50px;
 }
 
-/* line 82, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
+/* line 109, H:/www/railsprj/familyfin/app/assets/stylesheets/time.scss */
 .ui-datepicker.ui-position-top:after {
   top: auto;
   bottom: 0;

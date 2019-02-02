@@ -46,18 +46,40 @@ input[type="submit"]{
 
 .table_9col div{padding: 4px 8px;}
 
-.expenses li {border-bottom: 1px solid #e4eaec}
+.expenses li {border-bottom: 1px solid #c4cacc}
 .expenses li div { vertical-align: middle;
   color: #5a5a5a;
   font-size: 12px;
 }
 
-.grid_thead{
-  border-radius: 0 3px 3px 0;
-  border: 1px solid #e4eaec;
+.grid_title {
   background-color: #e4eaec;
+  border: 1px solid #e4eaec;
+  border-radius: 3px 3px 0 0;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px;
+  
+}
+
+.grid_thead {
+  background-color: #f5f5f5;
+  border-top: 1px solid #c4cacc;
+  border-bottom: 1px solid #ccc;
   font-weight: 700;
 }
+
+.grid_total{
+  background-color: #f5f5f5;
+  font-weight: 700;
+  
+}
+
+.grid_thead a, .grid_thead a:visited {
+  color: #777;
+
+}
+
 
 .flip-list-move {
   transition: transform .5s;

@@ -6,9 +6,7 @@
 <%= link_to 'Добавить расход', new_expense_path, class: 'btn btn_a right' %>
 </div>
 
-
 <div class="expenses">
-
   <div class="table_filter">
     <div>
       <v-chosen name="account" placeholder="Счет..."/>
@@ -23,15 +21,19 @@
     <div><button v-on:click="shuffle" >Сбросить</button></div>
   </div>
 
+<div v-for="month in groupHeaders">
+
   <div class="expenses_table">
+    <div class="grid_title">{{month}}</div>
     <div class="table_9col grid_thead">
       <div v-for="column in columns">
-        <a href="#" v-on:click="sortBy(column[0])"> {{ column[1]  }} </a>
+        <a href="#" v-on:click="sortBy(column[0], month)"> {{ column[1]  }} </a>
       </div>
     </div>
 
+
     <transition-group name="flip-list" tag="ul">
-      <li v-for="item in computedList" v-bind:key="item.id">
+      <li v-for="item in grouped[month]" v-bind:key="item.id">
         <div class="table_9col">
           <div v-for="column in columns" v-bind:class="{ td_right: column[0] == 'amount' }">
             {{ item[column[0]] }} 
@@ -43,18 +45,20 @@
         </li>
       </transition-group>
 
-      <div class="table_9col grid_thead">
+      <div class="table_9col grid_total">
         <div>Итого:</div>
         <div></div>
-        <div class="td_right">{{calcTotal}}</div>
+        <div class="td_right">{{fCalcTotal(month)}}</div>
         <div></div>
         <div></div>
         <div></div>
         <div></div>
         <div></div>
-        <div></div>
+
       </div>
     </div>
+</br>
   </div>
+</div>
   <%= render 'index_vue' %>
 

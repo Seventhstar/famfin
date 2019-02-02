@@ -8,6 +8,8 @@ class ExpensesController < InheritedResources::Base
     @json_expenses = @expenses.map{|e| {
       id: e.id, 
       date: e.date.try('strftime',"%d.%m.%Y"),
+      sortdate: e.date,
+      month: t(e.date.try('strftime',"%B")) + " " + e.date.try('strftime',"%Y"),
       shop: e.shop_name,
       amount: e.amount,
       account: e.account_name,
