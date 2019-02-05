@@ -79,3 +79,18 @@
 .table_row {height: 50px;}
 .table_cell {width: 48%; float: left;}
 .table_cell_last {width: 48%; float: right;}
+
+.slim_txt {
+  height: 26px; 
+  font-size: 13px;
+}
+
+.inp_w.slim {
+    width: 105px;
+    float: left;
+    margin-right: 20px;
+}
+
+.items_box_param {display: block; height: 24px; margin-bottom: 20px}
+.items_box_param label{float: left;}
+.items_box_param input[type='text']{ height: 26px; margin: 0 20px; padding: 6px;}

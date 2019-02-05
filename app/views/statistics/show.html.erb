@@ -1,5 +1,12 @@
 <div class="box_wrap box_wrap_1">
 
+<div class="items_box_head items_box_param">
+<label class="first">Период:</label>
+<div class="inp_w slim">
+  <%= text_field_tag :start_date, @period.try('strftime',"%d.%m.%Y"), class: "txt datepicker slim_txt" %>
+</div>
+</div>
+
   <div class="small_table">
     <div class="expense_stat">
       <div class="header"> 
@@ -16,7 +23,6 @@
       <div class="row">
         <% total = 0 %>
         <% @expenses_talbe.each do |row| %>
-
         
         <div><%= row[:type] %></div>
         <div class="td_right"><%= row[:amount] %></div>

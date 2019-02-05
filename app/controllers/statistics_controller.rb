@@ -7,11 +7,18 @@ class StatisticsController < ApplicationController
     @groups = ExpenseType.order(:id).pluck(:id, :name)
     @users  = User.order(:id).pluck(:id, :username)
 
+    @period = Date.parse(params[:period]) if !params[:period].nil?
+    # puts "@period", @period
+    @period = Date.today if @period.nil?
+
+    @period = @period.beginning_of_month 
+
     @expense_plans = ExpensePlan.all.map{ |ep| { expense_type: ep.expense_type_id, amount: ep.amount} }
     # puts "@expense_plans #{@expense_plans}"
     # //.pluck(:date, :expense_type_id, :amount )
 
-    @expenses = Expense.joins(:expense_type)
+    @expenses = Expense.where(date: @period..@period.end_of_month)
+                        .joins(:expense_type)
                         .select("expenses.amount as amount, 
                                   expense_types.id as expense_type_id,
                                 expense_types.name as expense_typename,
@@ -54,7 +61,7 @@ class StatisticsController < ApplicationController
     @total_diff = @rest - @over
     # puts "@expenses #{@expenses}"
 
-    @by_user = Expense.joins(:account)
+    @by_user = Expense.where(date: @period..@period.end_of_month).joins(:account)
                         .select("expenses.amount as amount, 
                                 accounts.id as accounts_id,
                                 accounts.user_id as user_id,

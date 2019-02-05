@@ -14,7 +14,6 @@
 //= require rails-ujs
 //= require activestorage
 //= require vue
-//= require turbolinks
 //= require common
 //= require_tree .
 
@@ -45,7 +44,14 @@ function showNotifications(){
 
 $(function() {
   // $(document).on('focus', '.datepicker', function () {$(".datepicker").inputmask('99.99.9999'); });
-$('.datepicker').datepicker({
-         format: 'dd.mm.yyyy'
-     });
+  $('.datepicker').datepicker({
+    format: 'dd.mm.yyyy'
+  });
+  // $('.items_box_param').on('')
+  $('#start_date').change(function(){
+    // console.log($(this).val())
+    window.location.href = '/statistics?period="'+$(this).val()+'"'
+    // $.get() 
+  });
+
 });
