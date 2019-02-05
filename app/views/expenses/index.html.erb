@@ -40,7 +40,7 @@
           </div>
           <div class="edit_delete td_right " style="">
             <a class="icon icon_edit" data-modal="true" :href="editLink(item.id)"></a>
-            <span class="icon icon_remove" @click="deleteLink(index, item.id)"></span> </div>
+            <span class="icon icon_remove" @click="deleteRow(month, item)"></span> </div>
           </div>
         </li>
       </transition-group>
@@ -59,6 +59,12 @@
     </div>
 </br>
   </div>
+
+<transition name="appear">
+  <confirmation-modal v-if='confirmModal'></confirmation-modal>
+</transition>
 </div>
-  <%= render 'index_vue' %>
+
+
+<%= render 'index_vue' %>
 

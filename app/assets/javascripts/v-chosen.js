@@ -15,7 +15,7 @@ Vue.component('v-chosen', {
         <v-select 
           :value="$parent[name]"
           :options="options"
-          :clearable="false" 
+          :clearable="true" 
           :placeholder="placeholder"
           @input="onUpdate($event)">
           <template slot="option" slot-scope="option">

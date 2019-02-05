@@ -55,7 +55,13 @@ class ExpensesController < InheritedResources::Base
         format.html { render :edit }
       end
     end
+  end
 
+  def destroy
+    @expense.destroy
+    respond_to do |format|
+      format.json { head :no_content }
+    end
   end
 
   private

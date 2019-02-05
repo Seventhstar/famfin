@@ -14,6 +14,7 @@
 //= require rails-ujs
 //= require activestorage
 //= require vue
+//= require turbolinks
 //= require common
 //= require_tree .
 
@@ -22,6 +23,25 @@ function to_sum(d){
   s = d.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1 ");
   return s;
 }
+
+var message_template = function(msg, type) {
+  return '<div class="alert flash_'+type+'">'+msg+'<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></div>';
+};
+
+
+var show_ajax_message = function(msg, type) {
+  if (!type) {type = "success"};
+  $(".js-notes").html( message_template(msg,type));    
+  showNotifications();
+};
+
+function showNotifications(){ 
+  $nt = $(".alert"); 
+  setTimeout("$nt.addClass('in')", 800);
+  setTimeout("$nt.removeClass('in').addClass('out')", 7000);
+}
+
+
 
 $(function() {
   // $(document).on('focus', '.datepicker', function () {$(".datepicker").inputmask('99.99.9999'); });
