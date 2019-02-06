@@ -45,6 +45,10 @@
   color: #d9480f;*/
 }
 
+input[type="text"], input[type="number"]{
+  border: 1px solid rgba(60,60,60,.26)
+}
+
 .expense_stat > div:first-of-type,
 .line + div {
   /*grid-column: 2;*/

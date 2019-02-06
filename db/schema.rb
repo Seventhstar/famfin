@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_29_092246) do
+ActiveRecord::Schema.define(version: 2019_02_06_200905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,8 +29,10 @@ ActiveRecord::Schema.define(version: 2019_01_29_092246) do
     t.bigint "bank_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "currency_id", default: 1
     t.index ["account_type_id"], name: "index_accounts_on_account_type_id"
     t.index ["bank_id"], name: "index_accounts_on_bank_id"
+    t.index ["currency_id"], name: "index_accounts_on_currency_id"
     t.index ["user_id"], name: "index_accounts_on_user_id"
   end
 
@@ -48,9 +50,26 @@ ActiveRecord::Schema.define(version: 2019_01_29_092246) do
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
   end
 
+  create_table "balances", force: :cascade do |t|
+    t.date "date"
+    t.string "amount"
+    t.bigint "account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_balances_on_account_id"
+  end
+
   create_table "banks", force: :cascade do |t|
     t.string "name"
     t.string "bik"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "currencies", force: :cascade do |t|
+    t.string "name"
+    t.string "short"
+    t.string "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -63,6 +82,17 @@ ActiveRecord::Schema.define(version: 2019_01_29_092246) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["expense_type_id"], name: "index_expense_plans_on_expense_type_id"
+  end
+
+  create_table "expense_rows", force: :cascade do |t|
+    t.bigint "expense_id"
+    t.bigint "expense_type_id"
+    t.integer "amount"
+    t.string "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["expense_id"], name: "index_expense_rows_on_expense_id"
+    t.index ["expense_type_id"], name: "index_expense_rows_on_expense_type_id"
   end
 
   create_table "expense_types", force: :cascade do |t|
@@ -129,8 +159,12 @@ ActiveRecord::Schema.define(version: 2019_01_29_092246) do
 
   add_foreign_key "accounts", "account_types"
   add_foreign_key "accounts", "banks"
+  add_foreign_key "accounts", "currencies"
   add_foreign_key "accounts", "users"
+  add_foreign_key "balances", "accounts"
   add_foreign_key "expense_plans", "expense_types"
+  add_foreign_key "expense_rows", "expense_types"
+  add_foreign_key "expense_rows", "expenses"
   add_foreign_key "expenses", "accounts"
   add_foreign_key "expenses", "expense_types"
   add_foreign_key "expenses", "shops"

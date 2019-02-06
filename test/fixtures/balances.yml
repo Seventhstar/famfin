@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2019-02-06
+  amount: MyString
+  account: one
+
+two:
+  date: 2019-02-06
+  amount: MyString
+  account: two

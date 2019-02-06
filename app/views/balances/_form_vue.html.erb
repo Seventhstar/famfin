@@ -1,0 +1,14 @@
+<script>
+  Vue.component('v-select', VueSelect.VueSelect)
+
+  let app = new Vue({
+    el: '.balance_form',
+    data: <%= fill_vue_data(@balance, {
+      model: 'balance',
+      lists: 'accounts',
+      list_values: 'account'
+    })%>
+  })
+
+
+</script>

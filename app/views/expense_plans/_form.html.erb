@@ -12,7 +12,7 @@
     </div>
   <% end %>
 
-  <div class="field table_row">
+  <div class="field table_row begin_of_month">
     <div style="width: 150px; float: left; margin-right: 10px">
     <%= form.label "Месяц" %>
     <%= form.text_field :date, label: false, class: "txt datepicker left" %>
@@ -32,7 +32,7 @@
   </div>
 
   <div class="field">
-    <%= form.label :comment %>
+    <label>Комментарий</label>
     <%= form.text_field :comment %>
   </div>
 

@@ -1,0 +1,31 @@
+<div class="balance_form">
+<%= form_with(model: balance, local: true) do |form| %>
+  <div class="field table_row begin_of_month">
+    <div style="width: 150px; float: left; margin-right: 10px">
+    <%= form.label "Месяц" %>
+    <%= form.text_field :date, label: false, class: "txt datepicker left" %>
+    </div>
+
+    <div class="left" style="width: 250px;  margin-right: 10px">
+    <%= form.label "Сумма" %>
+    <%= form.number_field :amount %>
+    </div>
+
+  </div>
+
+  <div class="field table_row">
+    <div class="table_cell">
+      <label>Категория</label>
+      <v-chosen name="account" placeholder="Счет..."/>
+    </div>
+  </div>
+
+  
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+</div>
+
+
+<%= render 'form_vue' %>

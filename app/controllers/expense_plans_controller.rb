@@ -4,6 +4,12 @@ class ExpensePlansController < InheritedResources::Base
   before_action :authenticate_user!
 
 
+  def new
+    @expense_plan = Balance.new
+    @expense_plan.date = Date.today.beginning_of_month
+  end
+
+
   def create
     @expense_plan = ExpensePlan.new(expense_plan_params)
 

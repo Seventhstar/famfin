@@ -47,6 +47,16 @@ $(function() {
   $('.datepicker').datepicker({
     format: 'dd.mm.yyyy'
   });
+
+
+  $('.begin_of_month .datepicker').change(function(){
+      //console.log('datepicker change');
+    let date = $(this).val()
+
+    $(this).val('01' + date.slice(2));
+  });
+
+
   // $('.items_box_param').on('')
   $('#start_date').change(function(){
     // console.log($(this).val())

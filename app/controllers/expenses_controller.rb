@@ -23,7 +23,7 @@ class ExpensesController < InheritedResources::Base
   def new
     # fill_values
     @expense = Expense.new
-    @expense.user = current_user
+    @user = current_user
     @expense.date = Date.today
   end
 
