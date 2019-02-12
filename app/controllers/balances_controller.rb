@@ -1,7 +1,28 @@
 class BalancesController < InheritedResources::Base
   before_action :set_balance, only: [:show, :edit, :update, :destroy]
-  before_action :fill_values, only: [:edit, :new, :index]
+  before_action :fill_values, only: [:edit, :new, :index, :create]
   before_action :authenticate_user! 
+
+  def index
+    today = Date.today
+    @month = t(today.try('strftime',"%B")) + " " + today.try('strftime',"%Y")
+    period = today.beginning_of_month..today.end_of_month
+    @balances = Balance.where(date: period)
+    @balances = @balances.map{|balance| 
+      exp = Expense.where(date: period, account_id: balance.account_id).sum(:amount)
+      rec = Receipt.where(date: period, account_id: balance.account_id).sum(:amount)
+      {
+      id: balance.id,
+      account: balance.account.try(:name),
+      balance_start: balance.amount,
+      expenses: exp,
+      receipts: rec,
+      balance_end: balance.amount.try(:to_i) - exp + rec
+
+    }}
+
+    puts "@balances #{@balances}"
+  end
 
   def new
     @balance = Balance.new
@@ -36,7 +57,7 @@ class BalancesController < InheritedResources::Base
 
 
   private
-    def set_balance
+    def set_balance 
       @balance = Balance.find(params[:id])
     end
 

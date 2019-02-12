@@ -1,0 +1,183 @@
+<script>
+  Vue.component('v-select', VueSelect.VueSelect)
+
+  let app = new Vue({
+    el: '.balances',
+    data: <%= fill_vue_data(nil, { 
+      sortKey: 'sortdate',
+      reverse: true,
+      currentIndex: -1,
+      currentMonth: -1,
+      confirmModal: false,
+      
+      total_end: 0,
+      total_e: 0,
+      total_r: 0,
+
+      groupHeaders: [],
+      filter: [],
+      grouped: [],
+      filteredData: [],
+      list_values: 'account',
+      lists: 'accounts balances:raw@balances',
+      columns: [ ['account', 'Счет'], ['balance_start', 'Нач. ост.'], ['expenses', 'Расходы'], ['receipts', 'Поступления'],
+                 ['balance_end', 'Кон. ост'], ['comment', 'Комментарий']]
+      
+    }) %>,
+
+    updated(){
+      this.onInput();
+    },
+
+    mounted(){
+      this.$root.$on('onInput', this.onInput);
+      this.$root.$on('modalYes', this.modalYes);
+    },
+
+  methods:{
+    cellClass(column, value){
+      cls = ''
+
+      let columnIsDigit = (column == true);
+      if (!columnIsDigit){
+        let ind = this.columns.indexOf(column);
+        if (ind <5 && ind >0) columnIsDigit = true;
+        
+      }
+      if (columnIsDigit) {
+        cls = cls + 'td_right';
+        if (value<0) cls = cls + " red";
+      }
+
+      return cls;
+    },
+
+    formatValue(value, column){
+      let ind = this.columns.indexOf(column);
+      if (ind <5 && ind >0) {
+        return to_sum(value)
+      }
+      return value
+    },  
+
+    fSum(sum){
+      return to_sum(sum)
+    },
+
+    fCalcTotal(){
+      // console.log('fCalcTotal: m', m, 'this.grouped[m]', this.grouped[m])
+      var arr = this.balances;
+      let total_end = 0;
+      let total_e = 0;
+      let total_r = 0;
+
+      total = 0;
+      for (i = 0; i < arr.length; ++i) {
+        total = total + toInt(arr[i].balance_start);
+        total_end = total_end + toInt(arr[i].balance_end);
+        total_e = total_e + toInt(arr[i].expenses);
+        total_r = total_r + toInt(arr[i].receipts);
+      }
+      this.total_end = total_end;
+      this.total_e = total_e;
+      this.total_r = total_r;
+      return to_sum(total);
+    },
+
+
+    onInput(e){
+      if (e !== undefined){
+        let s = -1;
+        for (var i=0; i < this.filter.length; i++){
+          if (this.filter[i].field === e.name) {s = i;}
+        }
+
+        if (s > -1){
+          if (e.label === undefined)
+            this.filter.splice(s,1)
+          else
+            this.filter[s].value = e.label
+        } 
+        else if (e.label !== undefined)
+          this.filter.push({field: e.name, value: e.label});
+      // console.log('input', e, this.filter) 
+      // this.fGroup();
+      }
+    },
+    
+    fSort(arr){
+       var vm = this
+        let s = this.reverse ? 1 : -1
+        let ns = this.reverse ? -1 : 1
+
+        // console.log('fSort', this.grouped, arr)
+
+        this.filteredData = arr.sort((a,b) => 
+          (a[this.sortKey] > b[this.sortKey]) ? ns : ((b[this.sortKey] > a[this.sortKey]) ? s : 0));
+        
+
+        if (this.filter.length > 0){
+          this.filteredData = this.filteredData.filter(function (item) {
+            for (q in vm.filter) {
+              let f = vm.filter[q]
+              if (item[f.field].toLowerCase().indexOf(f.value.toLowerCase()) === -1) return false
+            }
+            return true
+          })
+        } else {
+          // this.fGroup();
+          return this.filteredData;
+        }
+        // this.fGroup();
+        return this.filteredData;
+      
+    },
+
+    sortBy(sortKey) {
+      if (sortKey == 'date') sortKey = 'sortdate'
+      this.reverse = (this.sortKey == sortKey) ? ! this.reverse : false;
+      this.sortKey = sortKey;
+      this.fSort(this.balances);
+    },
+
+    shuffle: function () {
+      this.sortBy("sortdate")
+      this.reverse = true;
+      this.filter = [];
+    },
+
+    editLink(id){
+      return "/balances/" + id + "/edit"
+    },
+
+    modalYes(){
+      if (this.currentIndex === '' || !this.confirmModal ) return;
+      // let exp = this.grouped[this.currentMonth];
+      let index = this.balances.indexOf(this.currentIndex);
+      // console.log('modalYes', index, 'this.currentIndex', this.currentIndex, 'this.currentMonth', this.currentMonth);
+
+      if (index<0) return;
+      this.balances.splice(index, 1);
+      delete_item('/balances/'+this.currentIndex.id);
+      // this.fGroup();
+    },
+
+
+    deleteRow(index){
+        // this.currentMonth = month;
+        this.currentIndex = index;
+        this.confirmModal = true;
+        // console.log('this.confirmModal' ,this.confirmModal);
+    },
+
+    deleteLink(id){
+      return "/balances/" + id 
+    }
+
+
+  }
+
+})
+
+
+</script>

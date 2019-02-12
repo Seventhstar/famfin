@@ -1,0 +1,14 @@
+<script>
+  Vue.component('v-select', VueSelect.VueSelect)
+
+  let app = new Vue({
+    el: '.transfer_form',
+    data: <%= fill_vue_data(@transfer, {
+      model: 'transfer',
+      lists: 'accounts account_tos:@accounts',
+      list_values: 'account account_to'
+    })%>
+  })
+
+
+</script>

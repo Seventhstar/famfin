@@ -1,6 +1,6 @@
 class ExpensesController < InheritedResources::Base
   before_action :set_expense, only: [:show, :edit, :update, :destroy]
-  before_action :fill_values, only: [:edit, :new, :index]
+  before_action :fill_values, only: [:edit, :new, :index, :create]
   before_action :authenticate_user!
 
   def index

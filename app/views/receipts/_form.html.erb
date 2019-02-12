@@ -1,4 +1,5 @@
 <div class="receipt">
+  <%= controller.action_name %>
 <%= form_with(model: receipt, local: true) do |form| %>
   <% if receipt.errors.any? %>
     <div id="error_explanation">

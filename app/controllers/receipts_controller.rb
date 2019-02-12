@@ -1,17 +1,26 @@
 class ReceiptsController < InheritedResources::Base
   before_action :set_receipt, only: [:show, :edit, :update, :destroy]
-  before_action :fill_values, only: [:edit, :new]
+  before_action :fill_values, only: [:edit, :new, :index, :create]
   before_action :authenticate_user!
 
   def index
     @receipts = Receipt.order(date: :desc)
+    @json_receipts = @receipts.map{|e| {
+      id: e.id, 
+      date: e.date.try('strftime',"%d.%m.%Y"),
+      sortdate: e.date,
+      month: t(e.date.try('strftime',"%B")) + " " + e.date.try('strftime',"%Y"),
+      amount: e.amount,
+      account: e.account_name,
+      receipts_type: e.receipts_type_name,
+      comment: e.comment
+    }}
   end
 
   def new
-    # fill_values
     @receipt = Receipt.new
-    # @receipt.user = current_user
     @receipt.date = Date.today
+    puts "new"
   end
 
   def edit

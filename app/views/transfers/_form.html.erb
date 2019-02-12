@@ -1,0 +1,50 @@
+<div class='transfer_form'>
+<%= form_with(model: transfer, local: true) do |form| %>
+<% if transfer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(transfer.errors.count, "error") %> prohibited this transfer from being saved:</h2>
+
+      <ul>
+      <% transfer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field table_row">
+    <div style="width: 150px; float: left; margin-right: 10px">
+      <label> Дата</label>
+      <%= form.text_field :date, label: false, class: "txt datepicker left" %>
+    </div>
+
+    <div class="left" style="width: 250px;  margin-right: 10px">
+      <label> Сумма</label>
+      <%= form.number_field :amount %>
+    </div>
+  </div>
+
+  <div class="field">
+    <label> Счет отправитель</label>
+    <v-chosen name="account" placeholder="Счет..."/>
+  </div>
+
+  <div class="field">
+    <label> Счет получатель</label>
+    <v-chosen name="account_to" placeholder="Счет..."/>
+  </div>
+
+  <div class="field">
+    <label>Комментарий</label>
+    <%= form.text_field :comment %>
+  </div>
+
+  <div class="actions">
+    <%= submit_cancel transfers_url, {disabled: "!f_valid"} %>
+  </div>
+
+<% end %>
+</div>
+
+
+<%= render 'form_vue' %>

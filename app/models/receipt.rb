@@ -6,7 +6,7 @@ class Receipt < ApplicationRecord
     account.try(:name)
   end
 
-  def receipt_type_name()
+  def receipts_type_name()
     receipts_type.try(:name)
   end
 

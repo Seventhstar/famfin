@@ -17,11 +17,31 @@
 //= require common
 //= require_tree .
 
+function toInt(d){
+  if (isNaN(d)) return 0;
+  if (v_nil(d)) return 0;
+  return parseInt(d);
+}
+
 function to_sum(d){ 
   if (isNaN(d)) return 0;
   s = d.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1 ");
   return s;
 }
+
+var v_nil = function(v){ 
+  // console.log(typeof(v), v)
+  if (typeof(v) == "object") 
+    return v === null || v === undefined || v.value === undefined || v.value === 0;
+  else
+    return v === null || v === undefined || v === '';
+}
+
+var e_nil = function(id){
+  return e_val(id) === "";
+}
+
+
 
 var message_template = function(msg, type) {
   return '<div class="alert flash_'+type+'">'+msg+'<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></div>';

@@ -1,0 +1,39 @@
+.head
+  | Балансы  
+  = link_to 'Добавить баланс', new_balance_path, class: 'btn btn_a right'
+
+.balances
+  .table_filter
+    div
+      v-chosen name="account" placeholder="Счет..." 
+
+  .expenses_table
+    .grid_title 
+      =@month
+
+    .table_balances_col.grid_thead
+      div v-for="column in columns"
+        a href="#" v-on:click="sortBy(column[0])" {{ column[1] }}
+
+    transition-group name="flip-list" tag="ul" 
+      li v-bind:key="item.id" v-for="item in balances"
+        .table_balances_col
+          div :class="cellClass(column, item[column[0]])" v-for="column in columns"
+            | {{ formatValue(item[column[0]], column) }}
+          .edit_delete.td_right style="" 
+            a.icon.icon_edit :href="editLink(item.id)" data-modal="true"   
+            span.icon.icon_remove @clickgbvhbn="deleteRow(item)"
+
+    .table_balances_col.grid_total
+      div Итого:
+      .td_right  
+        |{{fCalcTotal()}}
+      .td_right  
+        |{{fSum(total_e)}}
+      .td_right  
+        |{{fSum(total_r)}}
+      div :class="cellClass(true, total_end)"  
+        |{{fSum(total_end)}}
+
+= render 'shared/modal_delete'
+= render 'index_vue'

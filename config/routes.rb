@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :transfers
   resources :balances
   resources :expense_plans
   devise_for :users, ActiveAdmin::Devise.config

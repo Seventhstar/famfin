@@ -59,8 +59,9 @@ SimpleNavigation::Configuration.run do |navigation|
     #
 
     primary.item :expenses, 'Расходы', '/expenses'
-    primary.item :expenses, 'План', '/expense_plans'
-    primary.item :expenses, 'Поступления', '/receipts'
+    primary.item :expense_plans, 'План', '/expense_plans'
+    primary.item :receipts, 'Поступления', '/receipts'
+    primary.item :transfers, 'Перемещения', '/transfers'
     primary.item :statistic, 'Статистика', '/statistics'
     primary.item :statistic, 'Балансы', '/balances'
 
