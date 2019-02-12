@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2019_02_12_193125) do
 
   create_table "balances", force: :cascade do |t|
     t.date "date"
-    t.string "amount"
+    t.integer "amount"
     t.bigint "account_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -145,7 +145,7 @@ ActiveRecord::Schema.define(version: 2019_02_12_193125) do
 
   create_table "transfers", force: :cascade do |t|
     t.date "date"
-    t.string "amount"
+    t.integer "amount"
     t.bigint "account_id"
     t.integer "account_to_id"
     t.string "comment"

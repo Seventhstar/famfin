@@ -10,14 +10,17 @@ class BalancesController < InheritedResources::Base
     @balances = Balance.where(date: period)
     @balances = @balances.map{|balance| 
       exp = Expense.where(date: period, account_id: balance.account_id).sum(:amount)
+      exp_t = Transfer.where(date: period, account_id: balance.account_id).sum(:amount)
+      
       rec = Receipt.where(date: period, account_id: balance.account_id).sum(:amount)
+      rec_t = Transfer.where(date: period, account_to_id: balance.account_id).sum(:amount)
       {
       id: balance.id,
       account: balance.account.try(:name),
       balance_start: balance.amount,
-      expenses: exp,
-      receipts: rec,
-      balance_end: balance.amount.try(:to_i) - exp + rec
+      expenses: exp + exp_t,
+      receipts: rec + rec_t,
+      balance_end: balance.amount.try(:to_i) - exp - exp_t + rec + rec_t
 
     }}
 
