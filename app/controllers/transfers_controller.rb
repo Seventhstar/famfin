@@ -6,7 +6,6 @@ class TransfersController < InheritedResources::Base
 
   def new
     @transfer = Transfer.new
-    @transfer.date = Date.today.beginning_of_month
   end
 
   def create

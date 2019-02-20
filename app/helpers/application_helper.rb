@@ -35,7 +35,7 @@ module ApplicationHelper
     submit_options["v-on:click"] = options[:click] if options[:click]
     
     s = submit_tag 'Сохранить', submit_options
-    c = link_to 'Отмена', back_url, class: "sub btn_a btn_reset", "data-dismiss": dd
+    c = link_to 'Отмена', back_url, class: "sub btn btn_reset", "data-dismiss": dd
     content_tag :div, class: "actns" do
       c+s
     end

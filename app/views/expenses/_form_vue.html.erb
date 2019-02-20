@@ -3,11 +3,85 @@
 
   let app = new Vue({
     el: '.expense',
+    mixins: [m_created],
     data: <%= fill_vue_data(@expense, {
+      formValid: false,
+      rowValid: false,
+      noteValid: 'test note',
       model: 'expense',
-      lists: 'shops accounts expense_types users',
-      list_values: 'shop account expense_type user'
-    })%>
+      required: ['shop', 'expense_type', 'amount', 'account', 'user'],
+      texts: 'amount comment new_comment new_amount new_expense_type',
+      lists: 'shops accounts expense_types users new_expense_types:@expense_types',
+      list_values: 'shop account expense_type user',
+      expense_rows:  @expense.expense_rows.map{|s| { id: s.id,
+                  expense_type: {label: s.expense_type_name, value: s.expense_type_id}, 
+                  amount: s.amount, comment: s.comment,
+                  _destroy: false}} 
+    })%>,
+
+    methods: {
+      row_field(index, field) {
+        return "expense[expense_rows_attributes]["+index+"]["+field+']'
+      },
+
+      add_row(){
+        if (this.new_expense_type !== null){
+          this.expense_rows.push({expense_type: this.new_expense_type, 
+                                  amount: this.new_amount, 
+                                  comment: this.new_comment, 
+                                  _destroy: false})
+          this.new_expense_type = null
+          this.new_amount = 0
+          this.new_comment = "" 
+          this.onInput()
+        }
+      },
+
+      del_row(index){
+        this.expense_rows[index]['_destroy'] = true
+      },
+
+      onInput(e){
+       // console.log('e', e);
+        rowValid = true
+        formValid = true
+        noteValid = ''
+
+        if (v_nil(this.new_expense_type)) {
+          rowValid = false
+        } else {
+          console.log('this.new_expense_type filled')
+          formValid = false
+          noteValid = 'Есть не сохраненные данные строки расхода'
+        }
+
+        if (v_nil(this.new_amount)){
+          rowValid = false
+        } else {
+          console.log('new_amount filled', this.new_amount)
+          formValid = false
+          noteValid = 'Есть не сохраненные данные строки расхода'
+        }
+
+        this.required.forEach( c => {if (v_nil(this[c])) formValid = false} );
+
+
+        this.rowValid  = rowValid
+        this.formValid = formValid
+        this.noteValid = noteValid
+      },
+
+      // onSubmit(event){
+      //   if (event && !this.formValid) {
+      //     event.preventDefault();
+      //     show_ajax_message(this.noteValid, 'error');
+      //   }
+
+      // }
+
+
+    }
+
   })
 
 

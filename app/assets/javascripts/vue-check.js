@@ -77,6 +77,7 @@ Vue.component('m-number', {
       },
       onUpdate(val) {
         this.$parent[this.name] = val.target.value.toString().replace(/\s/g, '');
+        this.$root.$emit('onInput', {value: this.$parent[this.name], name: this.name });
       }
     }
 });

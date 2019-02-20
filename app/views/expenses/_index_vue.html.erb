@@ -2,7 +2,8 @@
   Vue.component('v-select', VueSelect.VueSelect)
 
   let app = new Vue({
-    el: '.expenses',
+    el: '.expenses', 
+    mixins: [m_created],
     data: <%= fill_vue_data(nil, { 
       sortKey: 'sortdate',
       reverse: true,
@@ -79,7 +80,6 @@
         }
         return to_sum(total);
     },
-
 
     onInput(e){
       if (e !== undefined){

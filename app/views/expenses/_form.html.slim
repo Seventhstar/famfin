@@ -1,0 +1,33 @@
+.expense
+  = form_with(model: expense, local: true) do |form|
+    .panel_left.w35
+      .field.table_row
+        div style=("width: 150px; float: left; margin-right: 10px") 
+          label Дата
+          = form.text_field :date, label: false, class: "txt datepicker left"
+        .left style=("width: 155px;") 
+          label Сумма
+          m-number name="amount", "@input"=>"onInput()"
+      .field.table_row
+        div
+          = form.label t :shop_id
+          v-chosen name="shop" placeholder="Магазин..." 
+      .field.table_row
+        div
+          label Категория
+          v-chosen name="expense_type" placeholder="Категория..." 
+      .field
+        label Счет
+        v-chosen name="account" placeholder="Счет..." 
+      .field
+        label Ответственный
+        v-chosen name="user" placeholder="Кто..." 
+      .field
+        label Комментарий
+        = form.text_field :comment
+      .actions
+        = submit_cancel expenses_url, {classValid: '!formValid', tip: 'noteValid', click: 'onSubmit'}
+    .panel_right.w60
+      #e_rows.shops.before_30
+        = render 'rows'
+= render 'form_vue'

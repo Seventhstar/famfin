@@ -28,7 +28,7 @@
           li v-bind:key="item.id" v-for="item in grouped[month]"
             .table_9col
               div v-bind:class="{ td_right: column[0] == 'amount' }" v-for="column in columns"
-                | {{ item[column[0]] }}
+                | {{ formatValue(item[column[0]], column[0]) }}
               .edit_delete.td_right style="" 
                 a.icon.icon_edit :href="editLink(item.id)" data-modal="true"   
                 span.icon.icon_remove @clickgbvhbn="deleteRow(month, item)"

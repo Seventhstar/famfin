@@ -2,6 +2,7 @@ class ExpensesController < InheritedResources::Base
   before_action :set_expense, only: [:show, :edit, :update, :destroy]
   before_action :fill_values, only: [:edit, :new, :index, :create]
   before_action :authenticate_user!
+  before_action :check_amount, only: [:create, :update]
 
   def index
     @expenses = Expense.order(date: :desc).joins(:shop)
@@ -74,11 +75,17 @@ class ExpensesController < InheritedResources::Base
       @accounts = Account.order(:name)
       @expense_types = ExpenseType.order(:name)
       @users = User.order(:username)
+      @rows = @expense.expense_rows if @expense.present?
+    end
+
+    def check_amount
+      expense_params[:amount] = expense_params[:amount].gsub!(' ','') if !expense_params[:amount].nil?
     end
 
     def expense_params
       params.require(:expense).permit(:date, :shop_id, :amount, :report_amount,
-                                      :account_id, :expense_type_id, :user_id, :comment)
+                                      :account_id, :expense_type_id, :user_id, :comment,
+                                      expense_rows_attributes: [:id, :expense_type_id, :amount, :comment, :_destroy])
     end
 end
 

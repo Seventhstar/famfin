@@ -13,3 +13,16 @@
       show_ajax_message('Успешно удалено')
       return
   return
+
+@apply_mask = ()->
+  mask = 
+    groupSeparator: ' '
+    alias: 'numeric'
+    placeholder: '0'
+    autoGroup: !0
+    digits: 2
+    digitsOptional: !1
+    clearMaskOnLostFocus: !1
+  $('.float_mask').inputmask mask
+  mask.digits = 0 
+  $('.sum_mask').inputmask mask

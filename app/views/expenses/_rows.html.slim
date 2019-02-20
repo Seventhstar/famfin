@@ -1,0 +1,32 @@
+.panel.panel-default.expenses_table.expenses
+  .panel-heading.table-heading.grid_title Расходы по категориям:
+  
+  template v-for="(item, index) in expense_rows"  
+    ul v-show="!item._destroy"
+      input type="hidden" :name="row_field(index,'expense_type_id')" :value="item.expense_type.value"
+      input type="hidden" :name="row_field(index,'amount')" :value="item.amount"
+      input type="hidden" :name="row_field(index,'comment')" :value="item.comment"
+      input type="hidden" :name="row_field(index,'id')" v-if="item.id!==undefined" :value="item.id"
+      input type="hidden" :name="row_field(index,'_destroy')" :value="item._destroy"
+      li
+        .expense_rows
+          div 
+            |{{item.expense_type.label}}
+          .td_right
+            |{{item.amount}}
+          div 
+            |{{item.comment}}
+          div
+            span.icon.icon_del @click="del_row(index)"
+  .expense_rows.new_row   
+
+      div
+        = hidden_field 'expense_row', 'expense_id', value: @expense.id
+        .inp_l.inp_w
+          v-chosen name="new_expense_type" placeholder="Вид расхода"
+      div
+        m-number name="new_amount", "@input"=>"onInput()"
+      div
+        = text_field_tag :new_comment, '', class: 'txt', "v-model"=>"new_comment", "v-on:input"=>"onInput()"
+      div
+        span.btn_a.btn v-on:click="add_row" :disabled="!rowValid" Добавить

@@ -32,9 +32,9 @@ function to_sum(d){
 var v_nil = function(v){ 
   // console.log(typeof(v), v)
   if (typeof(v) == "object") 
-    return v === null || v === undefined || v.value === undefined || v.value === 0;
+    return v === null || v === undefined || v.value === undefined || v.value === 0 || v.value === '0';
   else
-    return v === null || v === undefined || v === '';
+    return v === null || v === undefined || v === '' || v === 0 || v === '0';
 }
 
 var e_nil = function(id){
@@ -67,7 +67,7 @@ $(function() {
   $('.datepicker').datepicker({
     format: 'dd.mm.yyyy'
   });
-
+  apply_mask();
 
   $('.begin_of_month .datepicker').change(function(){
       //console.log('datepicker change');
