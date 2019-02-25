@@ -33,30 +33,43 @@
           this.new_expense_type = null
           this.new_amount = 0
           this.new_comment = "" 
-          this.onInput()
+          this.onInput();
 
-          let amount =0
-          this.expense_rows.forEach( r =>{
-            amount = amount + toInt(r.amount)
-          })
-          this.amount = amount
+          this.calcTotal();
         }
+      },
+
+      calcTotal(){
+        let amount =0
+        this.expense_rows.filter(sh => !sh._destroy).forEach( r =>{
+          amount = amount + toInt(r.amount)
+        })
+        this.amount = amount
       },
 
       del_row(index){
         this.expense_rows[index]['_destroy'] = true
+        this.calcTotal();
       },
 
       onInput(e){
-       // console.log('e', e);
+        if (e == undefined) return;
         rowValid = true
         formValid = true
         noteValid = ''
+        
+        if (e.name == 'amount' && !v_nil(this.new_expense_type)){
+          let rest = this.amount
+          let amount =0
+          this.expense_rows.filter(sh => !sh._destroy).forEach( r =>{
+            amount = amount + toInt(r.amount)
+          })
+          this.new_amount = this.amount - amount
+        } 
 
         if (v_nil(this.new_expense_type)) {
           rowValid = false
         } else {
-          console.log('this.new_expense_type filled')
           formValid = false
           noteValid = 'Есть не сохраненные данные строки расхода'
         }
@@ -64,26 +77,28 @@
         if (v_nil(this.new_amount)){
           rowValid = false
         } else {
-          console.log('new_amount filled', this.new_amount)
           formValid = false
           noteValid = 'Есть не сохраненные данные строки расхода'
         }
 
         this.required.forEach( c => {if (v_nil(this[c])) formValid = false} );
-
-
         this.rowValid  = rowValid
         this.formValid = formValid
         this.noteValid = noteValid
       },
 
-      // onSubmit(event){
-      //   if (event && !this.formValid) {
-      //     event.preventDefault();
-      //     show_ajax_message(this.noteValid, 'error');
-      //   }
+      onSubmit(event){
+        if (event && !this.formValid) {
+          event.preventDefault();
+          if (rowValid){
+            this.add_row();
+          } else {
 
-      // }
+          show_ajax_message(this.noteValid, 'error');
+          }
+        }
+
+      }
 
 
     }

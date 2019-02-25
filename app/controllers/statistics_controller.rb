@@ -17,24 +17,59 @@ class StatisticsController < ApplicationController
     # puts "@expense_plans #{@expense_plans}"
     # //.pluck(:date, :expense_type_id, :amount )
 
+    e_ids = Expense.where(date: @period..@period.end_of_month).pluck(:id)
+    e_manyrows_ids = ExpenseRow.where(expense_id: e_ids).pluck(:expense_id)
+    puts "e_ids #{e_ids}"
+
+    query = "expenses.amount as amount, 
+              expense_types.id as expense_type_id,
+              expense_types.name as expense_typename,
+              case 
+                when expense_types.parent_id is null 
+                then expense_types.id
+                else expense_types.parent_id
+              end as parent,
+              case 
+                when expense_types.parent_id is null 
+                then expense_types.name
+                else ''
+              end as parent_name"
+
     @expenses = Expense.where(date: @period..@period.end_of_month)
-                        .joins(:expense_type)
-                        .select("expenses.amount as amount, 
-                                  expense_types.id as expense_type_id,
-                                expense_types.name as expense_typename,
-                                case when expense_types.parent_id is null then expense_types.id
-                                else expense_types.parent_id
-                                end as parent,
-                                case when expense_types.parent_id is null then expense_types.name
-                                else ''
-                                end as parent_name ")
-                        .map{ |e| { group: e.parent,
-                                    type: e.expense_typename,
-                                    amount: e.amount}}
-                        .group_by{ |i| i[:group] }
-                        .map{ |x, y| [x, y.inject(0){ |sum, i| sum + i[:amount] }] }
-                        .sort_by { |k| k[1] }
-                        .reverse!
+                  .where.not(id: e_manyrows_ids)
+                  .joins(:expense_type)
+                  .select(query)
+                  .map{ |e| { group: e.parent,
+                              type: e.expense_typename,
+                              amount: e.amount}}
+                  .group_by{ |i| i[:group] }
+                  # .map{ |x, y| [x, y.inject(0){ |sum, i| sum + i[:amount] }] }
+                  # .sort_by { |k| k[1] }
+                  # .reverse!
+
+    query.gsub!('expenses.amount', 'expense_rows.amount')
+
+    @expenses_2 = ExpenseRow.where(expense_id: e_ids)
+                  .joins(:expense_type)
+                  .joins(:expense)
+                  .select(query)
+                  .map{ |e| { group: e.parent,
+                              type: e.expense_typename,
+                              amount: e.amount}}
+                  .group_by{ |i| i[:group] }
+    
+    # puts "@expenses #{@expenses}"
+     
+    @expenses.merge!(@expenses_2){|key,oldval,newval| [*oldval].to_a + [*newval].to_a }
+
+    # puts "@expenses #{@expenses}"
+
+    @expenses = @expenses              
+                  .map{ |x, y| [x, y.inject(0){ |sum, i| sum + i[:amount] }] }
+                  .sort_by { |k| k[1] }
+                  .reverse!
+    # puts "@expenses_2 #{@expenses_2}"
+
 
     @total_amount = 0 
     @over = 0 
