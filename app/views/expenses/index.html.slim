@@ -31,7 +31,7 @@
                 | {{ formatValue(item[column[0]], column[0]) }}
               .edit_delete.td_right style="" 
                 a.icon.icon_edit :href="editLink(item.id)" data-modal="true"   
-                span.icon.icon_remove @clickgbvhbn="deleteRow(month, item)"
+                span.icon.icon_remove v-on:click="deleteRow(month, item)"
 
         .table_9col.grid_total
           div Итого:

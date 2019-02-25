@@ -34,6 +34,12 @@
           this.new_amount = 0
           this.new_comment = "" 
           this.onInput()
+
+          let amount =0
+          this.expense_rows.forEach( r =>{
+            amount = amount + toInt(r.amount)
+          })
+          this.amount = amount
         }
       },
 

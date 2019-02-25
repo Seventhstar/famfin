@@ -29,6 +29,11 @@
 .expense_stat .row, .expense_stat .total{display: grid; grid-template-columns: 1fr 80px 80px 80px; }
 .expense_rows {display: grid; grid-template-columns: 1.5fr 100px 2fr 110px}
 
+.table_receipts {display: grid; grid-template-columns: 90px 260px 80px 260px auto 55px;}
+
+.index_table { border-bottom: 1px solid #ccc;}
+.index_table div{    padding: 4px 8px;}
+
 .total_2, .expense_stat .row_2 {display: grid; grid-template-columns: 1fr 80px; }
 
 .expense_stat>div:not(.line) {

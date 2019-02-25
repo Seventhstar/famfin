@@ -27,12 +27,12 @@
     },
 
     created(){
-     this.fGroup();
+      this.fGroup();
+      this.$root.$on('onInput', this.onInput);
+      this.$root.$on('modalYes', this.modalYes);
     },
 
     mounted(){
-      this.$root.$on('onInput', this.onInput);
-      this.$root.$on('modalYes', this.modalYes);
     },
 
 
@@ -173,7 +173,7 @@
         this.currentMonth = month;
         this.currentIndex = index;
         this.confirmModal = true;
-        // console.log('this.confirmModal' ,this.confirmModal);
+        console.log('this.confirmModal' ,this.confirmModal);
     },
 
     deleteLink(id){
