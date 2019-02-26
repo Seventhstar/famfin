@@ -3,7 +3,7 @@ class Expense < ApplicationRecord
   belongs_to :account
   belongs_to :expense_type
   belongs_to :user
-  has_many :expense_rows
+  has_many :expense_rows,  dependent: :destroy 
   accepts_nested_attributes_for :expense_rows, allow_destroy: true
 
   def shop_name()
