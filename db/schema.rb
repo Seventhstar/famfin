@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_12_193125) do
+ActiveRecord::Schema.define(version: 2019_02_25_202659) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,12 @@ ActiveRecord::Schema.define(version: 2019_02_12_193125) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "expense_kinds", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "expense_plans", force: :cascade do |t|
     t.date "date"
     t.integer "amount"
@@ -100,6 +106,8 @@ ActiveRecord::Schema.define(version: 2019_02_12_193125) do
     t.integer "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "expense_kind_id"
+    t.index ["expense_kind_id"], name: "index_expense_types_on_expense_kind_id"
   end
 
   create_table "expenses", force: :cascade do |t|
@@ -176,6 +184,7 @@ ActiveRecord::Schema.define(version: 2019_02_12_193125) do
   add_foreign_key "expense_plans", "expense_types"
   add_foreign_key "expense_rows", "expense_types"
   add_foreign_key "expense_rows", "expenses"
+  add_foreign_key "expense_types", "expense_kinds"
   add_foreign_key "expenses", "accounts"
   add_foreign_key "expenses", "expense_types"
   add_foreign_key "expenses", "shops"

@@ -18,6 +18,23 @@ class Expense < ApplicationRecord
     expense_type.try(:name)
   end
 
+  def expense_type_names()
+    n = ''
+    if expense_rows.count >0
+      expense_rows.each do |er|
+        n += er.expense_type_name + ', '
+      end
+      n.chomp!(', ')
+    else
+      n = expense_type_name 
+    end
+    n
+  end
+
+  def expense_kind_name()
+    expense_type.try(:expense_kind).try(:name)
+  end
+
   def user_name()
     user.try(:name)
   end

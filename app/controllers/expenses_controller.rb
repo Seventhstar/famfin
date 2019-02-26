@@ -14,7 +14,8 @@ class ExpensesController < InheritedResources::Base
       shop: e.shop_name,
       amount: e.amount,
       account: e.account_name,
-      expense_type: e.expense_type_name,
+      expense_type: e.expense_type_names,
+      expense_kind: e.expense_kind_name,
       user: e.user_name,
       comment: e.comment
     }}
@@ -74,6 +75,7 @@ class ExpensesController < InheritedResources::Base
       @shops = Shop.order(:name)
       @accounts = Account.order(:name)
       @expense_types = ExpenseType.order(:name)
+      @expense_kinds = ExpenseKind.order(:name)
       @users = User.order(:username)
       @rows = @expense.expense_rows if @expense.present?
     end

@@ -12,6 +12,7 @@
       div
         v-chosen name="shop" placeholder="Магазин..." 
       div
+        v-chosen name="expense_kind" placeholder="Тип расхода..."
       div
         button v-on:click="shuffle" Сбросить  
 
@@ -39,6 +40,5 @@
           .td_right  
             |{{fCalcTotal(month)}}
 
-
-= render 'shared/modal_delete'
+    = render 'shared/modal_delete'
 = render 'index_vue'

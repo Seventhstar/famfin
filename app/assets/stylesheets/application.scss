@@ -118,7 +118,7 @@ input[type="text"], input[type="number"]{
 .btn_a{
   background: #ff8411 !important;
 }
-.btn_reset{background: #c3c3c3; margin-right: 10px; }
+.btn_reset{background: #c3c3c3 !important; margin-right: 10px; }
 
 .btn.disabled, .btn[disabled], .btn_a.disabled, .btn_a[disabled], .btn_add.disabled, .btn_add[disabled], .form-actions .btn-success.disabled, .form-actions .btn-success[disabled], a.btn-success.disabled, a.btn-success[disabled], .input-group .btn-warning.disabled, .input-group .btn-warning[disabled] {
     background: gray !important;
@@ -129,3 +129,6 @@ input[type="text"], input[type="number"]{
 .panel_right {width: 48%; float:right; display: block;}
 .panel_left.w35 {width: 35%; float: left; display: block;}
 .panel_right.w60 {width: 62%; float:right; display: block;}
+
+.hl_a {font-size: 17px; color: #000; line-height: 1.2; margin: 0 0 14px 0; font-weight: 500; }
+.hl_a.bd {border-bottom: 2px solid #e5e5e5; padding: 0 0 16px 0; margin: 0 0 30px 0; }

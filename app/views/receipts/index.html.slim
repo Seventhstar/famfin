@@ -29,14 +29,12 @@
                 | {{ item[column[0]] }}
               .edit_delete.td_right style="" 
                 a.icon.icon_edit :href="editLink(item.id)" data-modal="true"   
-                span.icon.icon_remove @clickgbvhbn="deleteRow(month, item)"
+                span.icon.icon_remove @click="deleteRow(month, item)"
 
         .table_receipts.grid_total.index_table
           div Итого:
           div
           .td_right  
             |{{fCalcTotal(month)}}
-
-
-= render 'shared/modal_delete'
+    = render 'shared/modal_delete'
 = render 'index_vue'

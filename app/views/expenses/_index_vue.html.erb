@@ -15,7 +15,7 @@
       grouped: [],
       filteredData: [],
       list_values: 'shop account expense_type',
-      lists: 'shops accounts expense_types users expenses:raw@json_expenses',
+      lists: 'shops accounts expense_types expense_kinds users expenses:raw@json_expenses',
       columns: [['date', 'Дата'], ['shop', 'Магазин'], ['amount', 'Сумма'],
                 ['account', 'Счет'], ['expense_type', 'Категория'], ['user', 'Кто'], 
                 ['comment', 'Комментарий']]
@@ -116,25 +116,22 @@
         let s = this.reverse ? 1 : -1
         let ns = this.reverse ? -1 : 1
 
-        // console.log('fSort', this.grouped, arr)
-
         this.filteredData = arr.sort((a,b) => 
           (a[this.sortKey] > b[this.sortKey]) ? ns : ((b[this.sortKey] > a[this.sortKey]) ? s : 0));
-        
 
         if (this.filter.length > 0){
           this.filteredData = this.filteredData.filter(function (item) {
             for (q in vm.filter) {
               let f = vm.filter[q]
-              if (item[f.field].toLowerCase().indexOf(f.value.toLowerCase()) === -1) return false
+              let v = item[f.field]
+
+              if (v == null || v.toLowerCase().indexOf(f.value.toLowerCase()) === -1) return false
             }
             return true
           })
         } else {
-          // this.fGroup();
           return this.filteredData;
         }
-        // this.fGroup();
         return this.filteredData;
       
     },
