@@ -11,30 +11,8 @@
         v-chosen name="receipts_type" placeholder="Вид поступления..."
       div
       div
-        button v-on:click="shuffle" Сбросить  
+        button @click="clearAll" Сбросить  
 
-    div v-for="month in groupHeaders"
-      .expenses_table
-        .grid_title 
-          |{{month}}
-
-        .table_receipts.grid_thead.index_table
-          div v-for="column in columns"
-            a href="#" v-on:click="sortBy(column[0], month)" {{ column[1] }}
-
-        transition-group name="flip-list" tag="ul" 
-          li v-bind:key="item.id" v-for="item in grouped[month]"
-            .table_receipts.index_table
-              div v-bind:class="{ td_right: column[0] == 'amount' }" v-for="column in columns"
-                | {{ item[column[0]] }}
-              .edit_delete.td_right style="" 
-                a.icon.icon_edit :href="editLink(item.id)" data-modal="true"   
-                span.icon.icon_remove @click="deleteRow(month, item)"
-
-        .table_receipts.grid_total.index_table
-          div Итого:
-          div
-          .td_right  
-            |{{fCalcTotal(month)}}
+    = render 'shared/index'
     = render 'shared/modal_delete'
 = render 'index_vue'

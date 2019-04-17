@@ -2,11 +2,11 @@
   Vue.component('v-select', VueSelect.VueSelect)
 
   let app = new Vue({
-    el: '.expenses', 
+    el: '.transfers', 
     mixins: [m_created, m_index],
     data: <%= fill_vue_data(nil, { 
       sortKey: 'sortdate',
-      controller: 'expenses',
+      controller: 'transfers',
       reverse: true,
       currentIndex: -1,
       currentMonth: -1,
@@ -15,10 +15,10 @@
       filter: [],
       grouped: [],
       filteredData: [],
-      list_values: 'shop account expense_type',
-      lists: 'shops accounts expense_types expense_kinds users mainList:raw@json_expenses',
-      columns: [['date', 'Дата'], ['shop', 'Магазин'], ['amount', 'Сумма'],
-                ['account', 'Счет'], ['expense_type', 'Категория'], ['user', 'Кто'], 
+      list_values: 'shop account',
+      lists: 'shops accounts users mainList:raw@json_transfers',
+      columns: [['date', 'Дата'], ['amount', 'Сумма'],
+                ['account', 'Счет отпр.'], ['account_to', 'Счет получ.'],
                 ['comment', 'Комментарий']]
       
     }) %>,

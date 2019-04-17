@@ -31,8 +31,8 @@
 
 .table_receipts {display: grid; grid-template-columns: 90px 260px 80px 260px auto 55px;}
 
-.index_table { border-bottom: 1px solid #ccc;}
-.index_table div{    padding: 4px 8px;}
+// .index_table { border-bottom: 1px solid #ccc;}
+// .index_table div{    padding: 4px 8px;}
 
 .total_2, .expense_stat .row_2 {display: grid; grid-template-columns: 1fr 80px; }
 
@@ -63,38 +63,29 @@ input[type="text"], input[type="number"]{
 .expense_stat .header{color: #d9480f; background-color: #ffd8a8; text-align: center; }
 .expense_stat .header .title {padding: 4px 8px;  font-weight: bold; border-bottom: 1px #d9480f solid;}
 
-.ttable thead {
-    border-radius: 0 3px 3px 0;
-}
-.ttable th, .ttable .total {
-    padding: 8px;
-    border-bottom: 1px solid #ddd;
-    font-weight: 700;
-}
+.ttable thead {border-radius: 0 3px 3px 0; } 
+
+
+.ttable th, .ttable .total {padding: 8px; border-bottom: 1px solid #ddd; font-weight: 700; }
 
 .td_edit_delete { width: 50px; }
-.icon,li.icon a {display: inline-block; vertical-align:middle; position:relative; width: 16px; height: 16px;}
+.icon,li.icon a {display: inline-block; vertical-align:middle; position:relative; width: 16px; height: 16px; cursor: pointer;}
 .icon+.icon {margin-left: 2px;}
 .icon_remove, .icon_del {background: image_url('delete.png');}
 .icon_remove.disabled { }
-.icon_edit {background: image_url('edit.png');}
+.icon_edit {background: image_url('edit.png'); }
+.icon_copy {background: image_url('copy.png'); }
 .icon_code {background: url('code.png');}
 .icon_tag {background: url('tag.png');}
 
 .table_row {height: 50px;}
+// .table_row label, .field label {font-weight: bold;}
 .table_cell {width: 48%; float: left;}
 .table_cell_last {width: 48%; float: right;}
 
-.slim_txt {
-  height: 26px; 
-  font-size: 13px;
-}
+.slim_txt {height: 26px; font-size: 13px; }
 
-.inp_w.slim {
-    width: 105px;
-    float: left;
-    margin-right: 20px;
-}
+.inp_w.slim {width: 105px; float: left; margin-right: 20px; }
 
 .items_box_param {display: block; height: 24px; margin-bottom: 20px}
 .items_box_param label{float: left;}
@@ -115,9 +106,7 @@ input[type="text"], input[type="number"]{
   position: relative;
 }
 
-.btn_a{
-  background: #ff8411 !important;
-}
+.btn_a {background: #ff8411 !important; }
 .btn_reset{background: #c3c3c3 !important; margin-right: 10px; }
 
 .btn.disabled, .btn[disabled], .btn_a.disabled, .btn_a[disabled], .btn_add.disabled, .btn_add[disabled], .form-actions .btn-success.disabled, .form-actions .btn-success[disabled], a.btn-success.disabled, a.btn-success[disabled], .input-group .btn-warning.disabled, .input-group .btn-warning[disabled] {
@@ -132,3 +121,7 @@ input[type="text"], input[type="number"]{
 
 .hl_a {font-size: 17px; color: #000; line-height: 1.2; margin: 0 0 14px 0; font-weight: 500; }
 .hl_a.bd {border-bottom: 2px solid #e5e5e5; padding: 0 0 16px 0; margin: 0 0 30px 0; }
+
+.sortArrow { width: 11px; height: 6px; display: inline-block; margin-left: 5px; vertical-align: 2px; position: relative; }
+.subsort {cursor: pointer;}
+.th.current a {color: #ff8411 !important;}

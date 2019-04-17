@@ -2,6 +2,15 @@
   | Перемещения
   = link_to 'Добавить перемещение', new_transfer_path, class: 'btn btn_a right'
 
+.ower  
+  .transfers
+
+    = render 'shared/index'
+    = render 'shared/modal_delete'
+= render 'index_vue'
+
+
+
 table
   thead
     tr

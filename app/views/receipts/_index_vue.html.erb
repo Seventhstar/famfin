@@ -3,8 +3,10 @@
 
   let app = new Vue({
     el: '.receipts',
+    mixins: [m_created, m_index],
     data: <%= fill_vue_data(nil, { 
       sortKey: 'sortdate',
+      controller: 'receipts',
       reverse: true,
       currentIndex: -1,
       currentMonth: -1,
@@ -14,176 +16,12 @@
       grouped: [],
       filteredData: [],
       list_values: 'account receipts_type',
-      lists: 'accounts receipts_types users receipts:raw@json_receipts',
+      lists: 'accounts receipts_types users mainList:raw@json_receipts',
       columns: [['date', 'Дата'], ['account', 'Счет'], ['amount', 'Сумма'],
                  ['receipts_type', 'Категория'],
                 ['comment', 'Комментарий']]
       
     }) %>,
 
-    updated(){
-      this.onInput();
-    },
-
-    created(){
-     this.fGroup();
-    },
-
-    mounted(){
-      this.$root.$on('onInput', this.onInput);
-      this.$root.$on('modalYes', this.modalYes);
-    },
-
-
-
-    computed: {
-      calcTotal: function () { 
-        total = 0;
-        for (i = 0; i < this.filteredData.length; ++i) {
-          total = total + this.filteredData[i].amount;
-        }
-        return to_sum(total);
-      },
-
-      computedList(){
-        var vm = this
-        let s = this.reverse ? 1 : -1
-        let ns = this.reverse ? -1 : 1
-        console.log('computedList')
-        this.filteredData = this.receipts.sort((a,b) => 
-          (a[this.sortKey] > b[this.sortKey]) ? ns : ((b[this.sortKey] > a[this.sortKey]) ? s : 0));
-
-        if (this.filter.length > 0){
-          this.filteredData = this.filteredData.filter(function (item) {
-            for (q in vm.filter) {
-              let f = vm.filter[q]
-              if (item[f.field].toLowerCase().indexOf(f.value.toLowerCase()) === -1) return false
-            }
-            return true
-          })
-        } else {
-          return this.filteredData;
-        }
-        return this.filteredData;
-      },
-    },
-
-  methods:{
-
-    fCalcTotal(m){
-      // console.log('fCalcTotal: m', m, 'this.grouped[m]', this.grouped[m])
-      var arr = this.grouped[m];
-        total = 0;
-        for (i = 0; i < arr.length; ++i) {
-          total = total + arr[i].amount;
-        }
-        return to_sum(total);
-    },
-
-
-    onInput(e){
-      if (e !== undefined){
-        let s = -1;
-        for (var i=0; i < this.filter.length; i++){
-          if (this.filter[i].field === e.name) {s = i;}
-        }
-
-        if (s > -1){
-          if (e.label === undefined)
-            this.filter.splice(s,1)
-          else
-            this.filter[s].value = e.label
-        } 
-        else if (e.label !== undefined)
-          this.filter.push({field: e.name, value: e.label});
-      // console.log('input', e, this.filter) 
-      this.fGroup();
-      }
-    },
-    
-    fGroup(){
-      this.grouped = _.groupBy(this.receipts, 'month')
-      this.groupHeaders  = Object.keys(this.grouped)
-      for (i = 0; i < this.groupHeaders.length; ++i) { 
-
-        this.grouped[this.groupHeaders[i]] = this.fSort(this.grouped[this.groupHeaders[i]]);
-        // console.log('a', a);
-      }
-    },
-
-    fSort(arr){
-       var vm = this
-        let s = this.reverse ? 1 : -1
-        let ns = this.reverse ? -1 : 1
-
-        // console.log('fSort', this.grouped, arr)
-
-        this.filteredData = arr.sort((a,b) => 
-          (a[this.sortKey] > b[this.sortKey]) ? ns : ((b[this.sortKey] > a[this.sortKey]) ? s : 0));
-        
-
-        if (this.filter.length > 0){
-          this.filteredData = this.filteredData.filter(function (item) {
-            for (q in vm.filter) {
-              let f = vm.filter[q]
-              if (item[f.field].toLowerCase().indexOf(f.value.toLowerCase()) === -1) return false
-            }
-            return true
-          })
-        } else {
-          // this.fGroup();
-          return this.filteredData;
-        }
-        // this.fGroup();
-        return this.filteredData;
-      
-    },
-
-    sortBy(sortKey, month) {
-      if (sortKey == 'date') sortKey = 'sortdate'
-      this.reverse = (this.sortKey == sortKey) ? ! this.reverse : false;
-      this.sortKey = sortKey;
-      this.fSort(this.grouped[month]);
-    },
-
-    shuffle: function () {
-      this.sortBy("sortdate")
-      this.reverse = true;
-      this.filter = [];
-    },
-
-    editLink(id){
-      return "/receipts/" + id + "/edit"
-    },
-
-    modalYes(){
-      if (this.currentIndex === '' || !this.confirmModal ) return;
-      // let exp = this.grouped[this.currentMonth];
-      let index = this.receipts.indexOf(this.currentIndex);
-      // console.log('modalYes', index, 'this.currentIndex', this.currentIndex, 'this.currentMonth', this.currentMonth);
-
-      if (index<0) return;
-      this.receipts.splice(index, 1);
-      delete_item('/receipts/'+this.currentIndex.id);
-      this.fGroup();
-    },
-
-
-    deleteRow(month, index){
-        this.currentMonth = month;
-        this.currentIndex = index;
-        this.confirmModal = true;
-        // console.log('this.confirmModal' ,this.confirmModal);
-    },
-
-    deleteLink(id){
-      return "/receipts/" + id 
-    }
-
-
-  }
-
 })
-
-
 </script>

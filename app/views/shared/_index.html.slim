@@ -1,0 +1,24 @@
+div v-for="month in groupHeaders"
+  .expenses_table
+    .grid_title 
+      |{{month}}
+
+    div :class="tableClass('grid_thead')" 
+      div v-for="column in columns"
+        a href="#" @click="sortBy(column[0], month)" {{ column[1] }}
+
+    transition-group name="flip-list" tag="ul" 
+      li :key="item.id" v-for="item in grouped[month]"
+        div :class="tableClass('')" 
+          div :class="tdClass(column)" v-for="column in columns"
+            | {{ formatValue(item[column[0]], column[0]) }}
+          .edit_delete.td_right style="" 
+            a.icon.icon_copy :href="copyLink(item.id)" 
+            a.icon.icon_edit :href="editLink(item.id)" data-modal="true"   
+            span.icon.icon_remove @click="deleteRow(month, item)"
+
+    div :class="tableClass('grid_total')" 
+      div Итого:
+      div
+      .td_right  
+        |{{fCalcTotal(month)}}

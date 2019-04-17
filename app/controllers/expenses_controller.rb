@@ -24,7 +24,14 @@ class ExpensesController < InheritedResources::Base
 
   def new
     # fill_values
-    @expense = Expense.new
+    if params[:from]
+      from = Expense.find(params[:from])
+      attrs = from.attributes.except!([:id, :created_at, :updated_at, :user_id])
+      @expense = Expense.new(attrs)
+    else
+      @expense = Expense.new
+    end
+
     @user = current_user
     @expense.date = Date.today
   end

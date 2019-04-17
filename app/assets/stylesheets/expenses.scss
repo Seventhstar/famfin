@@ -30,7 +30,8 @@
 
 input[type="submit"]{height: 34px; width: auto !important; }
 
-.table_9col {display: grid; grid-template-columns: 90px 210px 80px 260px 150px 70px auto 55px;}
+.table_expenses { grid-template-columns: 90px 210px 80px 260px 150px 70px auto 55px; }
+.table_transfers { grid-template-columns: 90px 90px 160px 160px 1fr 55px; }
 
 .table_filter{
   display: grid;
@@ -39,7 +40,8 @@ input[type="submit"]{height: 34px; width: auto !important; }
   margin-bottom: 20px;
 }
 
-.table_9col div, .expense_rows>div{padding: 4px 8px;}
+.index_table {padding: 4px 8px; display: grid; grid-gap: 4px;}
+
 .expense_rows.new_row>div{padding: 2px;}
 .expense_rows.new_row .v-select input[type=search], .expense_rows.new_row .v-select input[type=search]:focus{height: 30px !important; }
 .expense_rows.new_row input{height: 32px !important; }

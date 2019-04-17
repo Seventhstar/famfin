@@ -3,9 +3,29 @@ class TransfersController < InheritedResources::Base
   before_action :fill_values, only: [:edit, :new, :index, :create]
   before_action :authenticate_user! 
 
+  def index
+    @transfers = Transfer.order(date: :desc)
+    @json_transfers = @transfers.map{|e| {
+      id: e.id, 
+      date: e.date.try('strftime',"%d.%m.%Y"),
+      sortdate: e.date,
+      month: t(e.date.try('strftime',"%B")) + " " + e.date.try('strftime',"%Y"),
+      amount: e.amount,
+      account: e.account_name,
+      account_to: e.account_to_name,
+      comment: e.comment
+    }}
+
+  end
 
   def new
-    @transfer = Transfer.new
+    if params[:from]
+      from = Transfer.find(params[:from])
+      attrs = from.attributes.except!([:id, :created_at, :updated_at, :user_id])
+      @transfer = Transfer.new(attrs)
+    else
+      @transfer = Transfer.new
+    end
     @transfer.date = Date.today
   end
 

@@ -35,6 +35,11 @@ a { color: #428bca;  text-decoration: none;}
 .li-right a span {padding: 8px 16px; margin: 0;}
 
 #charts1 span{ background: asset-url('tools.png') no-repeat 0 0; background-position: -32px 0;}
+#charts1 span{ background: asset-url('tools.png') no-repeat 0 0; background-position: -32px 0;}
+// .th.current .sortArrow{ background: asset_path('tools.png') no-repeat 0 0; background-position: -32px 0; }
+.th.current .sortArrow{ background: asset-url("arrow_asc.png") no-repeat 0 0; }
+.th.current.desc .sortArrow{ background: asset-url("arrow_desc.png") no-repeat 0 0; }
+
 #charts1:hover span, #charts1 .active span{ background-position: -32px -32px;}
 
 #options span{ background: asset-url('tools.png') no-repeat 0 0; background-position: 0 0;}
