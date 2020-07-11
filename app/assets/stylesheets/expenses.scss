@@ -47,8 +47,8 @@ input[type="submit"]{height: 34px; width: auto !important; }
 .expense_rows.new_row input{height: 32px !important; }
 .expense_rows.new_row .btn_a{height: 32px !important; }
 
-
-.expenses li {border-bottom: 1px solid #c4cacc}
+ul {list-style:none;}
+.expenses li {border-bottom: 1px solid #c4cacc; list-style: none;}
 .expenses li div { vertical-align: middle; color: #5a5a5a; font-size: 12px; }
 
 .grid_title {
